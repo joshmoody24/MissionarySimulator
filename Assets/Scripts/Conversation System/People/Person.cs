@@ -18,11 +18,19 @@ public class Person : MonoBehaviour
     {
         this.iq = iq;
     }
+    void Awake()
+    {
+    }
+
     void Start()
+    {
+        if (role is Nonmember) ((Nonmember)role).interest = startingKnowledge.interest;
+    }
+
+    public void InstantiateKnowledge()
     {
         // use the prototype to make a per-person copy of knowledge;
         knowledge = Instantiate(startingKnowledge);
-        if (role is Nonmember) ((Nonmember)role).interest = startingKnowledge.interest;
     }
 
     public float GetTopicKnowledge(Topic topic)
@@ -30,11 +38,13 @@ public class Person : MonoBehaviour
         return knowledge.GetTopicKnowledge(topic);
     }
 
-    public void Learn(Topic topic, float baseAmount)
+    public void Learn(Topic topic, float baseAmount, float limit=1f)
     {
-        float learnableAmount = 1f - knowledge.GetTopicKnowledge(topic);
+        if (limit < 0 || limit > 1) limit = 1f;
+        float learnableAmount = Mathf.Clamp(limit - knowledge.GetTopicKnowledge(topic), 0f, 1f);
         float amountLearned = Mathf.Clamp(baseAmount * iq, 0f, learnableAmount);
-        knowledge.SetTopicKnowledge(topic, Mathf.Clamp(knowledge.GetTopicKnowledge(topic) + amountLearned, 0f, 1f));
+        float newKnowledgeAmount = knowledge.GetTopicKnowledge(topic) + amountLearned;
+        knowledge.SetTopicKnowledge(topic, newKnowledgeAmount);
         Debug.Log(name + " learned " + amountLearned + " about " + topic.name);
         role.OnLearn(amountLearned);
     }

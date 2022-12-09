@@ -10,6 +10,11 @@ public class ConversationUIManager : MonoBehaviour
 {
     [Header("HUD")]
     public TextMeshProUGUI currentTopic;
+    // e.g. red = minimal knowledge, green = much knowledge
+    public Image knowledgeIndicatorOne;
+    public Image knowledgeIndicatorTwo;
+    public Sprite[] knowledgeTiers;
+
     [Header("Action Types")]
     public Transform actionTypeButtonParent;
     public GameObject actionTypeButton;
@@ -21,9 +26,6 @@ public class ConversationUIManager : MonoBehaviour
     public Transform topicButtonParent;
     public GameObject topicButton;
 
-    // e.g. red = minimal knowledge, green = much knowledge
-    public Color[] knowledgeTiers;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -32,6 +34,7 @@ public class ConversationUIManager : MonoBehaviour
         topicViewParent.gameObject.SetActive(false);
         ConversationManager.manager.onTopicChanged.AddListener(UpdateTopic);
         ConversationManager.manager.onTurnEnded.AddListener(HidePlayerControls);
+        ConversationManager.manager.onTurnEnded.AddListener(UpdateKnowledgeIndicators);
     }
 
     public void DisplayCategoryPrompt(IEnumerable<ActionCategory> categories, Action<ActionCategory> onSelect)
@@ -71,7 +74,7 @@ public class ConversationUIManager : MonoBehaviour
         // add other buttons
         foreach (AbstractAction a in actions.OrderBy(a => {
             if (a is MissionaryAction) return ((MissionaryAction)a).specialPointsCost;
-            else return ((NonmemberAction)a).interestCost;
+            else return ((NonmemberAction)a).minAttention;
         }))
         {
             Button b = Instantiate(actionButton, actionButtonParent).GetComponent<Button>();
@@ -108,6 +111,14 @@ public class ConversationUIManager : MonoBehaviour
     public void UpdateTopic(Topic newTopic)
     {
         currentTopic.text = newTopic.name;
+        UpdateKnowledgeIndicators();
+    }
+
+    public void UpdateKnowledgeIndicators(Person p = null)
+    {
+        float tierSize = 1f / knowledgeTiers.Length;
+        knowledgeIndicatorOne.sprite = knowledgeTiers[Mathf.Clamp(Mathf.FloorToInt(ConversationManager.manager.personOne.GetTopicKnowledge(ConversationManager.manager.currentTopic) / tierSize), 0, knowledgeTiers.Length-1)];
+        knowledgeIndicatorTwo.sprite = knowledgeTiers[Mathf.Clamp(Mathf.FloorToInt(ConversationManager.manager.personTwo.GetTopicKnowledge(ConversationManager.manager.currentTopic) / tierSize), 0, knowledgeTiers.Length-1)];
     }
 
     void HidePlayerControls(Person person)

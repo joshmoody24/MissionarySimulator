@@ -9,6 +9,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 public class ConversationManager : MonoBehaviour
 {
     public static ConversationManager manager;
+    public GameConfig config;
 
     private void Awake()
     {
@@ -105,7 +106,9 @@ public class ConversationManager : MonoBehaviour
 
     public void Teach(float power)
     {
-        GetOtherPerson().Learn(currentTopic, power);
+        // people can't teach other people beyond their own knowledge
+        float limit = activePerson.GetTopicKnowledge(currentTopic);
+        GetOtherPerson().Learn(currentTopic, power, limit);
     }
 
 

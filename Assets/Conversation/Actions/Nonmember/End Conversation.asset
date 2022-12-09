@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180abe0d778bdf04a9e071e4eb347fcd, type: 3}
-  m_Name: Default
+  m_Script: {fileID: 11500000, guid: 42a3b668243bcc14ca2670f99de8639c, type: 3}
+  m_Name: End Conversation
   m_EditorClassIdentifier: 
-  conversationBurnRate: 0.165
+  name: End Conversation
+  category: {fileID: 11400000, guid: deb5ade16a6dccc4f84198cde27bd3a7, type: 2}
+  requiredKnowledge: 0
+  actionEffects: []
+  minEnergy: 0
+  maxEnergy: 0.13

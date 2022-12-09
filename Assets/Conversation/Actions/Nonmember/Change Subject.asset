@@ -20,5 +20,5 @@ MonoBehaviour:
     requiredKnowledge: 0.536
     successRate: 0.722
     type: 1
-  requiredEngagement: 0
-  interestCost: 0
+  minEnergy: 0.12
+  maxEnergy: 1

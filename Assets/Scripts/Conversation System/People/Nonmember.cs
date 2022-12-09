@@ -26,12 +26,12 @@ public class Nonmember : IRole
 
     public IEnumerable<AbstractAction> GetPossibleActions()
     {
-        return actions;
+        return actions.Where(a => a.minAttention <= attention && a.maxAttention >= attention);
     }
 
     public IEnumerable<ActionCategory> GetPossibleCategories()
     {
-        return actions.Select(a => a.category).Distinct();
+        return GetPossibleActions().Select(a => a.category).Distinct();
     }
 
     public void OnLearn(float amount)

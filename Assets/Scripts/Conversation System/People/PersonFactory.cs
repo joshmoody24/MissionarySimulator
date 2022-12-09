@@ -23,6 +23,7 @@ public class PersonFactory : MonoBehaviour
             p.startingKnowledge = settings.startingKnowledge;
             if (ConversationManager.manager.personOne == null) ConversationManager.manager.personOne = p;
             else if (ConversationManager.manager.personTwo == null) ConversationManager.manager.personTwo = p;
+            p.InstantiateKnowledge();
         }
     }
 }
