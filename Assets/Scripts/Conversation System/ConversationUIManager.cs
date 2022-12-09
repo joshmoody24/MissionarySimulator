@@ -14,6 +14,7 @@ public class ConversationUIManager : MonoBehaviour
     public Image knowledgeIndicatorOne;
     public Image knowledgeIndicatorTwo;
     public Sprite[] knowledgeTiers;
+    public Sprite mysterySprite;
 
     [Header("Action Types")]
     public Transform actionTypeButtonParent;
@@ -117,8 +118,13 @@ public class ConversationUIManager : MonoBehaviour
     public void UpdateKnowledgeIndicators(Person p = null)
     {
         float tierSize = 1f / knowledgeTiers.Length;
-        knowledgeIndicatorOne.sprite = knowledgeTiers[Mathf.Clamp(Mathf.FloorToInt(ConversationManager.manager.personOne.GetTopicKnowledge(ConversationManager.manager.currentTopic) / tierSize), 0, knowledgeTiers.Length-1)];
-        knowledgeIndicatorTwo.sprite = knowledgeTiers[Mathf.Clamp(Mathf.FloorToInt(ConversationManager.manager.personTwo.GetTopicKnowledge(ConversationManager.manager.currentTopic) / tierSize), 0, knowledgeTiers.Length-1)];
+
+        float? personOneKnowledge = ConversationManager.manager.personOne.GetTopicKnowledge(ConversationManager.manager.currentTopic);
+        float? personTwoKnowledge = ConversationManager.manager.personTwo.GetTopicKnowledge(ConversationManager.manager.currentTopic);
+        if (personOneKnowledge == null) knowledgeIndicatorOne.sprite = mysterySprite;
+        else knowledgeIndicatorOne.sprite = knowledgeTiers[Mathf.Clamp(Mathf.FloorToInt((float)personOneKnowledge / tierSize), 0, knowledgeTiers.Length-1)];
+        if (personTwoKnowledge == null) knowledgeIndicatorTwo.sprite = mysterySprite;
+        else knowledgeIndicatorTwo.sprite = knowledgeTiers[Mathf.Clamp(Mathf.FloorToInt((float)personTwoKnowledge / tierSize), 0, knowledgeTiers.Length-1)];
     }
 
     void HidePlayerControls(Person person)

@@ -7,6 +7,8 @@ using System.Linq;
 public class Knowledge : ScriptableObject
 {
     public new string name;
+    // 1f = 100 IQ (average)
+    public float iq;
     [Range(0f,1f)]
     public float interest;
     public TopicKnowledge[] topicKnowledge;
@@ -20,9 +22,19 @@ public class Knowledge : ScriptableObject
         return dict;
     }
 
-    public float GetTopicKnowledge(Topic topic)
+    public float? GetTopicKnowledge(Topic topic, bool force = false)
     {
-        return topicKnowledge.FirstOrDefault(tk => tk.topic == topic)?.knowledge ?? 0f;
+        var tk = topicKnowledge.FirstOrDefault(tk => tk.topic == topic);
+        if (tk != null && tk.revealed) return tk.knowledge;
+        else if (tk.revealed == false && force == true) return tk.knowledge;
+        else return null;
+    }
+
+    public float GetTopicKnowledgeForced(Topic topic)
+    {
+        var tk = topicKnowledge.FirstOrDefault(tk => tk.topic == topic);
+        if (tk != null) return tk.knowledge;
+        else return 0f;
     }
 
     public bool SetTopicKnowledge(Topic topic, float newKnowlege)
@@ -42,6 +54,7 @@ public class Knowledge : ScriptableObject
 [System.Serializable]
 public class TopicKnowledge {
     public Topic topic;
+    public bool revealed = false;
     [Range(0f, 1f)]
     public float knowledge;
 }

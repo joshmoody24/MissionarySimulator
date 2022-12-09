@@ -17,13 +17,20 @@ public class PersonFactory : MonoBehaviour
         {
             Person p = settings.targetObject.AddComponent<Person>();
             p.name = settings.name;
-            p.iq = (float)settings.iq / 100f;
             p.driver = settings.npc ? new NpcDriver(p) : new PlayerDriver(p, ui);
             p.role = settings.missionary ? new Missionary(missionaryActions) : new Nonmember(p, nonmemberActions);
             p.startingKnowledge = settings.startingKnowledge;
             if (ConversationManager.manager.personOne == null) ConversationManager.manager.personOne = p;
             else if (ConversationManager.manager.personTwo == null) ConversationManager.manager.personTwo = p;
             p.InstantiateKnowledge();
+            p.knowledge.iq = (float)settings.iq / 100f;
+            if(p.driver is PlayerDriver)
+            {
+                foreach(TopicKnowledge t in p.knowledge.topicKnowledge)
+                {
+                    t.revealed = true;
+                }
+            }
         }
     }
 }

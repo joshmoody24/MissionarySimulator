@@ -624,7 +624,7 @@ MonoBehaviour:
     targetObject: {fileID: 79325797}
     startingKnowledge: {fileID: 11400000, guid: af298b77d195cdd4f92d51ae4c3de5e7, type: 2}
   - name: NPC
-    iq: 59
+    iq: 71
     missionary: 0
     npc: 1
     targetObject: {fileID: 1862491146}
@@ -1954,6 +1954,7 @@ MonoBehaviour:
   - {fileID: -1066438192, guid: 9289e253d9757d243ac815112477a6b9, type: 3}
   - {fileID: -1616990081, guid: 9289e253d9757d243ac815112477a6b9, type: 3}
   - {fileID: -410566322, guid: 9289e253d9757d243ac815112477a6b9, type: 3}
+  mysterySprite: {fileID: 2105977247, guid: 9289e253d9757d243ac815112477a6b9, type: 3}
   actionTypeButtonParent: {fileID: 1335772182}
   actionTypeButton: {fileID: 2974872186268355983, guid: 1c5cfbe60f2e76c4ea92b18ddc18b88d, type: 3}
   actionButtonParent: {fileID: 85838327}

@@ -38,7 +38,7 @@ public class Nonmember : IRole
     {
         // scaled down by iq because we want to adjust attention by the base amount
         // not iq scaled amount
-        ReduceAttention((amount * (1-interest)) / person.iq);
+        ReduceAttention((amount * (1-interest)) / person.knowledge.iq);
     }
 
     public void ReduceAttention(float amount)

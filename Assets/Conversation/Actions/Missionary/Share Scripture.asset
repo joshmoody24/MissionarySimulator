@@ -16,8 +16,8 @@ MonoBehaviour:
   category: {fileID: 11400000, guid: 86da63fb7ca700948858aad2b33a1143, type: 2}
   requiredKnowledge: 0.685
   actionEffects:
-  - power: 0.582
+  - power: 0.309
     requiredKnowledge: 0
-    successRate: 0.356
+    successRate: 0.727
     type: 2
   specialPointsCost: 0

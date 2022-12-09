@@ -96,6 +96,8 @@ public class ConversationManager : MonoBehaviour
     public float Inquire(float power)
     {
         float knowledge = GetOtherPerson().knowledge.ToDict()[currentTopic];
+        // reveal
+        GetOtherPerson().knowledge.topicKnowledge.FirstOrDefault(tk => tk.topic == currentTopic).revealed = true;
         return knowledge;
     }
 
@@ -107,7 +109,7 @@ public class ConversationManager : MonoBehaviour
     public void Teach(float power)
     {
         // people can't teach other people beyond their own knowledge
-        float limit = activePerson.GetTopicKnowledge(currentTopic);
+        float limit = activePerson.GetTopicKnowledgeForced(currentTopic);
         GetOtherPerson().Learn(currentTopic, power, limit);
     }
 
