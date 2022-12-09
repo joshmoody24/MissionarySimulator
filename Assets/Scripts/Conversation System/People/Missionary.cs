@@ -7,9 +7,9 @@ using UnityEngine;
 public class Missionary : IRole
 {
     public int specialPoints;
-    public List<AbstractMissionaryAction> actions;
+    public List<MissionaryAction> actions;
 
-    public Missionary(IEnumerable<AbstractMissionaryAction> actions)
+    public Missionary(IEnumerable<MissionaryAction> actions)
     {
         this.actions = actions.ToList();
     }

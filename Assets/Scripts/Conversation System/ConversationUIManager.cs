@@ -8,6 +8,8 @@ using System.Linq;
 
 public class ConversationUIManager : MonoBehaviour
 {
+    [Header("HUD")]
+    public TextMeshProUGUI currentTopic;
     [Header("Action Types")]
     public Transform actionTypeButtonParent;
     public GameObject actionTypeButton;
@@ -28,6 +30,8 @@ public class ConversationUIManager : MonoBehaviour
         actionTypeButtonParent.gameObject.SetActive(false);
         actionButtonParent.gameObject.SetActive(false);
         topicViewParent.gameObject.SetActive(false);
+        ConversationManager.manager.onTopicChanged.AddListener(UpdateTopic);
+        ConversationManager.manager.onTurnEnded.AddListener(HidePlayerControls);
     }
 
     public void DisplayCategoryPrompt(IEnumerable<ActionCategory> categories, Action<ActionCategory> onSelect)
@@ -40,7 +44,7 @@ public class ConversationUIManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        foreach (ActionCategory c in categories)
+        foreach (ActionCategory c in categories.OrderBy(c => c.order))
         {
             Button b = Instantiate(actionTypeButton, actionTypeButtonParent).GetComponent<Button>();
             b.GetComponentInChildren<TextMeshProUGUI>().text = c.name;
@@ -65,7 +69,10 @@ public class ConversationUIManager : MonoBehaviour
         backBtn.onClick.AddListener(ConversationManager.manager.RestartTurn);
 
         // add other buttons
-        foreach (AbstractAction a in actions)
+        foreach (AbstractAction a in actions.OrderBy(a => {
+            if (a is MissionaryAction) return ((MissionaryAction)a).specialPointsCost;
+            else return ((NonmemberAction)a).interestCost;
+        }))
         {
             Button b = Instantiate(actionButton, actionButtonParent).GetComponent<Button>();
             b.GetComponentInChildren<TextMeshProUGUI>().text = a.name;
@@ -98,7 +105,12 @@ public class ConversationUIManager : MonoBehaviour
         }
     }
 
-    void DisablePlayerControl()
+    public void UpdateTopic(Topic newTopic)
+    {
+        currentTopic.text = newTopic.name;
+    }
+
+    void HidePlayerControls(Person person)
     {
         actionTypeButtonParent.gameObject.SetActive(false);
         actionButtonParent.gameObject.SetActive(false);

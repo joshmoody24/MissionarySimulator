@@ -6,4 +6,5 @@ public class ActionCategory : ScriptableObject
 {
     public new string name;
     public string description;
+    public int order;
 }

@@ -6,9 +6,9 @@ public class PersonFactory : MonoBehaviour
 {
     public ConversationUIManager ui;
     [Header("Missionary")]
-    public AbstractMissionaryAction[] missionaryActions;
+    public MissionaryAction[] missionaryActions;
     [Header("Nonmember")]
-    public AbstractNonmemberAction[] nonmemberActions;
+    public NonmemberAction[] nonmemberActions;
     public PersonSettings[] peopleToCreate;
 
     void Start()
@@ -16,7 +16,8 @@ public class PersonFactory : MonoBehaviour
         foreach(PersonSettings settings in peopleToCreate)
         {
             Person p = settings.targetObject.AddComponent<Person>();
-            p.driver = settings.npc ? new NpcDriver() : new PlayerDriver(ui);
+            p.name = settings.name;
+            p.driver = settings.npc ? new NpcDriver(p) : new PlayerDriver(p, ui);
             p.role = settings.missionary ? new Missionary(missionaryActions) : new Nonmember(nonmemberActions);
             p.startingKnowledge = settings.startingKnowledge;
             if (ConversationManager.manager.personOne == null) ConversationManager.manager.personOne = p;
@@ -27,6 +28,7 @@ public class PersonFactory : MonoBehaviour
 
 [System.Serializable]
 public struct PersonSettings {
+    public string name;
     public bool missionary, npc;
     public GameObject targetObject;
     public Knowledge startingKnowledge;

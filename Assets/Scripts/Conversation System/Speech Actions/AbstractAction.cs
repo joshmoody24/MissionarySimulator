@@ -10,22 +10,18 @@ public abstract class AbstractAction : ScriptableObject
     [Range(0f,1f)]
     public float requiredKnowledge;
 
+    public ActionEffect[] actionEffects;
+    public void Execute(Person actor, Action onActionFinish)
+    {
+        Debug.Log(actor.name + " executed action " + name);
+        foreach (var effect in actionEffects)
+        {
+            effect.Execute(actor, onActionFinish);
+        }
+    }
+
     public bool isUsable()
     {
         return true;
     }
-
-    public void Initiate(Person actor, Action onActionFinish)
-    {
-        Prepare(actor, onActionFinish);
-    }
-
-    protected virtual void Prepare(Person actor, Action onFinish)
-    {
-        // most actions skip the prepare phase and jump right to execute
-        Execute();
-        onFinish();
-    }
-
-    protected abstract void Execute();
 }

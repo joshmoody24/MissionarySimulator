@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c0fa50d96a9ab94cbf5cac339be8332, type: 3}
+  m_Script: {fileID: 11500000, guid: e8685728db50c5646ad586aac2b3dace, type: 3}
   m_Name: Share Scripture
   m_EditorClassIdentifier: 
   name: Share Scripture
   category: {fileID: 11400000, guid: 86da63fb7ca700948858aad2b33a1143, type: 2}
-  requiredKnowledge: 0.625
+  requiredKnowledge: 0.685
+  actionEffects:
+  - power: 0.768
+    successRate: 0.356
+    type: 2
   specialPointsCost: 0
-  power: 0.82

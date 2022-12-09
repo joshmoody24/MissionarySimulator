@@ -7,9 +7,9 @@ public class Nonmember : IRole
     public float interest;
     public float energy;
     [SerializeField]
-    private List<AbstractNonmemberAction> actions;
+    private List<NonmemberAction> actions;
 
-    public Nonmember(IEnumerable<AbstractNonmemberAction> actions)
+    public Nonmember(IEnumerable<NonmemberAction> actions)
     {
         this.actions = actions.ToList();
     }

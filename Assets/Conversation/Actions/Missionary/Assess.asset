@@ -9,11 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9712ba1f26ecef94f90019ffe3330479, type: 3}
+  m_Script: {fileID: 11500000, guid: e8685728db50c5646ad586aac2b3dace, type: 3}
   m_Name: Assess
   m_EditorClassIdentifier: 
   name: Assess
   category: {fileID: 11400000, guid: 2e2e66307d0f552469510ac33298fcc8, type: 2}
-  requiredKnowledge: 0
+  requiredKnowledge: 0.11
+  actionEffects:
+  - power: 0
+    successRate: 0.825
+    type: 3
   specialPointsCost: 0
-  power: 0
