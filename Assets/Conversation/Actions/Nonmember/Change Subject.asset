@@ -20,5 +20,5 @@ MonoBehaviour:
     requiredKnowledge: 0.536
     successRate: 0.722
     type: 1
-  minEnergy: 0.12
-  maxEnergy: 1
+  minAttention: 0.31
+  maxAttention: 1

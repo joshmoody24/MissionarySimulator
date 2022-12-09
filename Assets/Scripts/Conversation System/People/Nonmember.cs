@@ -36,10 +36,12 @@ public class Nonmember : IRole
 
     public void OnLearn(float amount)
     {
-        ReduceEnergy(amount * (1-interest));
+        // scaled down by iq because we want to adjust attention by the base amount
+        // not iq scaled amount
+        ReduceAttention((amount * (1-interest)) / person.iq);
     }
 
-    public void ReduceEnergy(float amount)
+    public void ReduceAttention(float amount)
     {
         attention -= amount;
         if (attention < 0) attention = 0;
