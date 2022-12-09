@@ -7,6 +7,8 @@ using System.Linq;
 public class Knowledge : ScriptableObject
 {
     public new string name;
+    [Range(0f,1f)]
+    public float interest;
     public TopicKnowledge[] topicKnowledge;
     public Dictionary<Topic, float> ToDict()
     {

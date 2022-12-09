@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ignorant
   m_EditorClassIdentifier: 
   name: Ignorant
+  interest: 0.025
   topicKnowledge:
   - topic: {fileID: 11400000, guid: 9a34a75b64922144aa1ffb568c3e4f97, type: 2}
     knowledge: 0

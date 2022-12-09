@@ -1357,7 +1357,9 @@ MonoBehaviour:
   onTopicChanged:
     m_PersistentCalls:
       m_Calls: []
-  conversationHistory: []
+  onTurnEnded:
+    m_PersistentCalls:
+      m_Calls: []
   startingTopic: {fileID: 11400000, guid: b1fd7de9fc6e8d2468ae8a2d5b6f925d, type: 2}
 --- !u!4 &1187148563
 Transform:

@@ -28,4 +28,9 @@ public class Missionary : IRole
     {
         return actions.Select(a => a.category).Distinct();
     }
+
+    public void OnLearn(float amount)
+    {
+
+    }
 }

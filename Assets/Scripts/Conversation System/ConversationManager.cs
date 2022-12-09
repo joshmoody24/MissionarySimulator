@@ -105,8 +105,7 @@ public class ConversationManager : MonoBehaviour
 
     public void Teach(float power)
     {
-        float prevKnowledge = GetOtherPerson().knowledge.GetTopicKnowledge(currentTopic);
-        // TODO: Figure out algorithm for: GetOtherPerson().knowledge.SetTopicKnowledge(currentTopic, prevKnowledge + power);
+        GetOtherPerson().Learn(currentTopic, power);
     }
 
 
