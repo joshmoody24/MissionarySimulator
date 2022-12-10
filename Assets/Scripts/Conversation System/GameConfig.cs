@@ -7,4 +7,5 @@ public class GameConfig : ScriptableObject
 {
     [Range(0f,1f)]
     public float conversationBurnRate;
+
 }

@@ -11,14 +11,6 @@ public class ConversationManager : MonoBehaviour
     public static ConversationManager manager;
     public GameConfig config;
 
-    private void Awake()
-    {
-        if (manager == null) manager = this;
-        else Destroy(this);
-        if (onTopicChanged == null) onTopicChanged = new UnityEvent<Topic>();
-        if (onTurnEnded == null) onTurnEnded = new UnityEvent<Person>();
-    }
-
     public Person personOne;
     public Person personTwo;
     private Person activePerson;
@@ -30,10 +22,22 @@ public class ConversationManager : MonoBehaviour
     public UnityEvent<Topic> onTopicChanged;
     [HideInInspector]
     public UnityEvent<Person> onTurnEnded;
+    [HideInInspector]
+    public UnityEvent<AbstractAction, Person> onActionFinished;
 
     // Debug
     [Header("Debug")]
     public Topic startingTopic;
+
+
+    private void Awake()
+    {
+        if (manager == null) manager = this;
+        else Destroy(this);
+        if (onTopicChanged == null) onTopicChanged = new UnityEvent<Topic>();
+        if (onTurnEnded == null) onTurnEnded = new UnityEvent<Person>();
+        if (onActionFinished == null) onActionFinished = new UnityEvent<AbstractAction, Person>();
+    }
 
     void Start()
     {
@@ -59,10 +63,8 @@ public class ConversationManager : MonoBehaviour
 
     public void GetCategory()
     {
-        // onPlayerTurnStart.Invoke();
         // generate list of possible speech action categories
         activePerson.driver.PromptCategories(GetAction);
-        // onPlayerActionTypesGenerated.Invoke(actionCategories);
     }
 
     public void GetAction(ActionCategory selectedCategory)
@@ -72,7 +74,13 @@ public class ConversationManager : MonoBehaviour
 
     public void InitiateAction(AbstractAction action, Person actor)
     {
-        action.Execute(actor, InitializeEndOfTurn);
+        action.Execute(actor, EvaluateAction);
+    }
+
+    public void EvaluateAction(AbstractAction action)
+    {
+        onActionFinished.Invoke(action, activePerson);
+        InitializeEndOfTurn();
     }
 
     public void InitializeEndOfTurn()

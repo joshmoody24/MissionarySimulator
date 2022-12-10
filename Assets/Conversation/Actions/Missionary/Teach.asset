@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Teach
   m_EditorClassIdentifier: 
   name: Teach
+  description: Teach the person a moderate amount
   category: {fileID: 11400000, guid: 86da63fb7ca700948858aad2b33a1143, type: 2}
   requiredKnowledge: 0.21
   actionEffects:

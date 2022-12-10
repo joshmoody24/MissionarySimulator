@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Change Topic
   m_EditorClassIdentifier: 
   name: Change Subject
+  description: Change the topic of the conversation
   category: {fileID: 11400000, guid: deb5ade16a6dccc4f84198cde27bd3a7, type: 2}
   requiredKnowledge: 0.06
   actionEffects:

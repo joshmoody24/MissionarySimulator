@@ -14,7 +14,7 @@ public class ActionEffect
     public float successRate;
     public EffectType type;
 
-    public void Execute(Person actor, Action onFinish)
+    public void Execute(Person actor, Action onEffectFinish)
     {
         switch (type)
         {
@@ -23,31 +23,30 @@ public class ActionEffect
                 actor.driver.PromptTopics(requiredKnowledge, (topic) =>
                 {
                     ConversationManager.manager.ChangeTopic(topic);
-                    onFinish();
+                    onEffectFinish();
                 });
                 break;
 
             case EffectType.Teach:
                 ConversationManager.manager.Teach(power);
-                onFinish();
+                onEffectFinish();
                 break;
 
             case EffectType.Ask:
                 float knowledge = ConversationManager.manager.Inquire(power);
                 Debug.Log("Revealed intelligence: " + knowledge);
-                onFinish();
+                onEffectFinish();
                 break;
 
             case EffectType.Object:
                 Debug.Log("Objections are not implemented");
-                onFinish();
+                onEffectFinish();
                 break;
 
             default:
-                onFinish();
+                onEffectFinish();
                 break;
         }
-
     }
 }
 

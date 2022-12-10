@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class ConversationUIManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class ConversationUIManager : MonoBehaviour
     public Image knowledgeIndicatorTwo;
     public Sprite[] knowledgeTiers;
     public Sprite mysterySprite;
+
+    [Header("Narration")]
+    public TextMeshProUGUI narrationText;
 
     [Header("Action Types")]
     public Transform actionTypeButtonParent;
@@ -36,6 +40,23 @@ public class ConversationUIManager : MonoBehaviour
         ConversationManager.manager.onTopicChanged.AddListener(UpdateTopic);
         ConversationManager.manager.onTurnEnded.AddListener(HidePlayerControls);
         ConversationManager.manager.onTurnEnded.AddListener(UpdateKnowledgeIndicators);
+        ConversationManager.manager.onActionFinished.AddListener(UpdateNarrationText);
+    }
+
+    public void ClearAllButtons()
+    {
+        foreach (Transform child in actionTypeButtonParent)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in actionButtonParent)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in topicButtonParent)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void DisplayCategoryPrompt(IEnumerable<ActionCategory> categories, Action<ActionCategory> onSelect)
@@ -44,16 +65,15 @@ public class ConversationUIManager : MonoBehaviour
         actionTypeButtonParent.gameObject.SetActive(true);
         actionButtonParent.gameObject.SetActive(false);
         topicViewParent.gameObject.SetActive(false);
-        foreach (Transform child in actionTypeButtonParent)
-        {
-            Destroy(child.gameObject);
-        }
+        ClearAllButtons();
         foreach (ActionCategory c in categories.OrderBy(c => c.order))
         {
             Button b = Instantiate(actionTypeButton, actionTypeButtonParent).GetComponent<Button>();
             b.GetComponentInChildren<TextMeshProUGUI>().text = c.name;
             b.onClick.AddListener(() => onSelect(c));
         }
+        var firstBtn = actionTypeButtonParent.GetChild(0).gameObject;
+        EventSystem.current.SetSelectedGameObject(firstBtn);
     }
 
     public void DisplayActionPrompt(IEnumerable<AbstractAction> actions, Action<AbstractAction> onSelect)
@@ -61,16 +81,14 @@ public class ConversationUIManager : MonoBehaviour
         actionTypeButtonParent.gameObject.SetActive(false);
         actionButtonParent.gameObject.SetActive(true);
         topicViewParent.gameObject.SetActive(false);
-        // clear out the previous buttons
-        foreach (Transform child in actionButtonParent)
-        {
-            Destroy(child.gameObject);
-        }
+
+        ClearAllButtons();
 
         // add back button
         Button backBtn = Instantiate(actionButton, actionButtonParent).GetComponent<Button>();
         backBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Go Back";
         backBtn.onClick.AddListener(ConversationManager.manager.RestartTurn);
+        EventSystem.current.SetSelectedGameObject(backBtn.gameObject);
 
         // add other buttons
         foreach (AbstractAction a in actions.OrderBy(a => {
@@ -89,16 +107,14 @@ public class ConversationUIManager : MonoBehaviour
         actionTypeButtonParent.gameObject.SetActive(false);
         actionButtonParent.gameObject.SetActive(false);
         topicViewParent.gameObject.SetActive(true);
-        // clear out the previous buttons
-        foreach (Transform child in topicButtonParent)
-        {
-            Destroy(child.gameObject);
-        }
+
+        ClearAllButtons();
 
         // add back button
         Button backBtn = Instantiate(actionButton, topicButtonParent).GetComponent<Button>();
         backBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Go Back";
         backBtn.onClick.AddListener(ConversationManager.manager.RestartTurn);
+        EventSystem.current.SetSelectedGameObject(backBtn.gameObject);
 
         // add other buttons
         foreach (Topic t in topics)
@@ -132,5 +148,10 @@ public class ConversationUIManager : MonoBehaviour
         actionTypeButtonParent.gameObject.SetActive(false);
         actionButtonParent.gameObject.SetActive(false);
         topicViewParent.gameObject.SetActive(false);
+    }
+
+    void UpdateNarrationText(AbstractAction action, Person actor)
+    {
+        narrationText.text = actor.name + " used " + action.name + "!";
     }
 }

@@ -10,15 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8685728db50c5646ad586aac2b3dace, type: 3}
-  m_Name: Testify
+  m_Name: Inspired Question
   m_EditorClassIdentifier: 
-  name: Testify
-  description: Low chance of teaching the person a LOT
-  category: {fileID: 11400000, guid: 86da63fb7ca700948858aad2b33a1143, type: 2}
-  requiredKnowledge: 0.295
+  name: Inspired Question
+  description: Reveal how much the person knows and teach them a small amount
+  category: {fileID: 11400000, guid: 2e2e66307d0f552469510ac33298fcc8, type: 2}
+  requiredKnowledge: 0
   actionEffects:
-  - power: 0.454
+  - power: 0
     requiredKnowledge: 0
-    successRate: 0.495
+    successRate: 0
+    type: 3
+  - power: 0.175
+    requiredKnowledge: 0
+    successRate: 0
     type: 2
-  specialPointsCost: 0
+  specialPointsCost: 3
