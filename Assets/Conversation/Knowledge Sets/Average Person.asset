@@ -12,14 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949f78b2fb78e614081f509aa3d99650, type: 3}
   m_Name: Average Person
   m_EditorClassIdentifier: 
-  name: Average Person
-  interest: 0.19
+  name: Missionary
+  iq: 1
+  interest: 0.14
   topicKnowledge:
-  - topic: {fileID: 11400000, guid: 9a34a75b64922144aa1ffb568c3e4f97, type: 2}
-    knowledge: 0.304
+  - topic: {fileID: 11400000, guid: 8be663824cdd4bd4b8ebbb5039216827, type: 2}
+    revealed: 0
+    knowledge: 0.575
+  - topic: {fileID: 11400000, guid: c9895eff0837fdd449d7035b95966dc6, type: 2}
+    revealed: 0
+    knowledge: 0.188
   - topic: {fileID: 11400000, guid: 36c2375601fad7c448368a8496a4fa0d, type: 2}
-    knowledge: 0.015
+    revealed: 0
+    knowledge: 0.204
   - topic: {fileID: 11400000, guid: cbd7d492a6b40bd4fb8d248538a2a3c1, type: 2}
-    knowledge: 0.108
+    revealed: 0
+    knowledge: 0.133
+  - topic: {fileID: 11400000, guid: f918f7db79bbc9d449859f71dd0bab88, type: 2}
+    revealed: 0
+    knowledge: 0.807
+  - topic: {fileID: 11400000, guid: f1017241d29f67b4c8c4a6b8fa9764fe, type: 2}
+    revealed: 0
+    knowledge: 0.37
+  - topic: {fileID: 11400000, guid: 9a34a75b64922144aa1ffb568c3e4f97, type: 2}
+    revealed: 0
+    knowledge: 0.47
   - topic: {fileID: 11400000, guid: b1fd7de9fc6e8d2468ae8a2d5b6f925d, type: 2}
-    knowledge: 0.912
+    revealed: 0
+    knowledge: 0.989

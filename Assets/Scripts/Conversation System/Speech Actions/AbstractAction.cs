@@ -35,7 +35,6 @@ public abstract class AbstractAction : ScriptableObject
             else
             {
                 var currentEffect = pendingEffects.Dequeue();
-                Debug.Log(currentEffect);
                 currentEffect.Execute(actor, callback);
             }
         }

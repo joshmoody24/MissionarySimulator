@@ -625,11 +625,11 @@ MonoBehaviour:
     targetObject: {fileID: 79325797}
     startingKnowledge: {fileID: 11400000, guid: af298b77d195cdd4f92d51ae4c3de5e7, type: 2}
   - name: NPC
-    iq: 71
+    iq: 100
     missionary: 0
     npc: 1
     targetObject: {fileID: 1862491146}
-    startingKnowledge: {fileID: 11400000, guid: 00482d24e4db8e04f8ad0a0454eb6b1b, type: 2}
+    startingKnowledge: {fileID: 11400000, guid: ebfb5f96c230ee44cb0de2d31242862a, type: 2}
 --- !u!4 &503382875
 Transform:
   m_ObjectHideFlags: 0
@@ -1151,11 +1151,11 @@ MonoBehaviour:
   m_Content: {fileID: 251560615}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 1
-  m_Elasticity: 0.1
+  m_MovementType: 2
+  m_Elasticity: 0.02
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 8
   m_Viewport: {fileID: 1700955538}
   m_HorizontalScrollbar: {fileID: 1961941410}
   m_VerticalScrollbar: {fileID: 892987835}
@@ -2603,7 +2603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8773585, g: 0.7752222, b: 0.3517711, a: 0.6862745}
+  m_Color: {r: 0.9811321, g: 0.9119887, b: 0.6247775, a: 0.6862745}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -21,7 +21,7 @@ MonoBehaviour:
     requiredKnowledge: 0
     successRate: 0
     type: 3
-  - power: 0.175
+  - power: 0.103
     requiredKnowledge: 0
     successRate: 0
     type: 2
