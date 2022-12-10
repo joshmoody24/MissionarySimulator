@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting.Dependencies.NCalc;
 
-public abstract class AbstractAction : ScriptableObject
+public  class AbstractAction : ScriptableObject
 {
     public new string name;
     [TextArea(3,8)]
@@ -13,14 +13,16 @@ public abstract class AbstractAction : ScriptableObject
     [Range(0f,1f)]
     public float requiredKnowledge;
 
-    public ActionEffect[] actionEffects;
+    [SerializeReference]
+    public ActionEffect[] effects;
+
     public void Execute(Person actor, Action<AbstractAction> onActionFinish)
     {
         Debug.Log(actor.name + " executed action " + name);
 
         // queue up the effects and have them call each other via callbacks
         Queue<ActionEffect> pendingEffects = new Queue<ActionEffect>();
-        foreach (var effect in actionEffects)
+        foreach (var effect in effects)
         {
             pendingEffects.Enqueue(effect);
         }

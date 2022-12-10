@@ -16,9 +16,15 @@ MonoBehaviour:
   description: Low chance of teaching the person a LOT
   category: {fileID: 11400000, guid: 86da63fb7ca700948858aad2b33a1143, type: 2}
   requiredKnowledge: 0.295
-  actionEffects:
-  - power: 0.366
-    requiredKnowledge: 0
-    successRate: 0.495
-    type: 2
+  effects:
+  - rid: 7107907469498647355
   specialPointsCost: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 7107907469498647355
+      type: {class: TeachEffect, ns: , asm: Assembly-CSharp}
+      data:
+        name: TeachEffect
+        successRate: 0.513
+        power: 0.502

@@ -13,12 +13,19 @@ MonoBehaviour:
   m_Name: Change Subject
   m_EditorClassIdentifier: 
   name: Change Subject
+  description: 
   category: {fileID: 11400000, guid: deb5ade16a6dccc4f84198cde27bd3a7, type: 2}
   requiredKnowledge: 0
-  actionEffects:
-  - power: 0
-    requiredKnowledge: 0.536
-    successRate: 0.722
-    type: 1
+  effects:
+  - rid: 7107907469498647341
   minAttention: 0.31
   maxAttention: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 7107907469498647341
+      type: {class: ChangeTopicEffect, ns: , asm: Assembly-CSharp}
+      data:
+        name: ChangeTopicEffect
+        successRate: 1
+        requiredKnowledge: 0.442

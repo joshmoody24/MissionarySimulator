@@ -16,9 +16,15 @@ MonoBehaviour:
   description: Teach the person a large amount
   category: {fileID: 11400000, guid: 86da63fb7ca700948858aad2b33a1143, type: 2}
   requiredKnowledge: 0.685
-  actionEffects:
-  - power: 0.242
-    requiredKnowledge: 0
-    successRate: 0.727
-    type: 2
+  effects:
+  - rid: 7107907469498647353
   specialPointsCost: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 7107907469498647353
+      type: {class: TeachEffect, ns: , asm: Assembly-CSharp}
+      data:
+        name: TeachEffect
+        successRate: 1
+        power: 0.21

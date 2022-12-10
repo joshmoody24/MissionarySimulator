@@ -15,10 +15,15 @@ MonoBehaviour:
   name: Assess
   description: Reveal how much they know
   category: {fileID: 11400000, guid: 2e2e66307d0f552469510ac33298fcc8, type: 2}
-  requiredKnowledge: 0.11
-  actionEffects:
-  - power: 0
-    requiredKnowledge: 0
-    successRate: 0.825
-    type: 3
+  requiredKnowledge: 0.201
+  effects:
+  - rid: 7107907469498647350
   specialPointsCost: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 7107907469498647350
+      type: {class: AskEffect, ns: , asm: Assembly-CSharp}
+      data:
+        name: AskEffect
+        successRate: 1

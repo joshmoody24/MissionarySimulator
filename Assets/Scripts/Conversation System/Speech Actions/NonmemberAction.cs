@@ -7,8 +7,6 @@ public class NonmemberAction : AbstractAction
 {
     //[Range(0f,1f)]
     //public float requiredEngagement;
-    [Range(0f, 1f)]
     public float minAttention = 0f;
-    [Range(0f, 1f)]
     public float maxAttention = 1f;
 }

@@ -101,7 +101,7 @@ public class ConversationManager : MonoBehaviour
         onTopicChanged.Invoke(topic);
     }
 
-    public float Inquire(float power)
+    public float Inquire()
     {
         float knowledge = GetOtherPerson().knowledge.ToDict()[currentTopic];
         // reveal

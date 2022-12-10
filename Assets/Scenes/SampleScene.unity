@@ -610,13 +610,14 @@ MonoBehaviour:
   missionaryActions:
   - {fileID: 11400000, guid: c5a7a889b9acd2a42aae0e170afa70b0, type: 2}
   - {fileID: 11400000, guid: a3a6f045c364fff45a66a6ca103971b5, type: 2}
-  - {fileID: 11400000, guid: 7521743e1de0507498bf6e2f72e51e4b, type: 2}
-  - {fileID: 11400000, guid: 8b9b6112427c7d94fbcfc8ebda451e23, type: 2}
   - {fileID: 11400000, guid: 8c54bd36d2ee36e488cd5d828d7c79c3, type: 2}
+  - {fileID: 11400000, guid: 7521743e1de0507498bf6e2f72e51e4b, type: 2}
+  - {fileID: 11400000, guid: 1da4f924f02874748b533c9eaad0cba4, type: 2}
+  - {fileID: 11400000, guid: 8b9b6112427c7d94fbcfc8ebda451e23, type: 2}
   nonmemberActions:
   - {fileID: 11400000, guid: a6942626a50bbed419a27a28bf9e9962, type: 2}
-  - {fileID: 11400000, guid: c89498ef94606e247962fd6c69d4e12e, type: 2}
   - {fileID: 11400000, guid: 5e55d0717ac73ef43b5bea0ee71a410d, type: 2}
+  - {fileID: 11400000, guid: c89498ef94606e247962fd6c69d4e12e, type: 2}
   peopleToCreate:
   - name: Missionary
     iq: 109

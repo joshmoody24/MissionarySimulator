@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: End Conversation
   m_EditorClassIdentifier: 
   name: End Conversation
+  description: 
   category: {fileID: 11400000, guid: deb5ade16a6dccc4f84198cde27bd3a7, type: 2}
   requiredKnowledge: 0
-  actionEffects: []
+  effects:
+  - rid: 7107907469498647358
   minAttention: 0
   maxAttention: 0.065
+  references:
+    version: 2
+    RefIds:
+    - rid: 7107907469498647358
+      type: {class: EndEffect, ns: , asm: Assembly-CSharp}
+      data:
+        name: EndEffect
+        successRate: 1
