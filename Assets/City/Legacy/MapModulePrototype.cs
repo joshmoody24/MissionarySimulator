@@ -89,4 +89,6 @@ public enum Connector
     DirtRoadWithGrass,
     RoadWithGrass,
     SmallRoadWithGrass,
+    Water,
+    WaterWithGrass,
 }
