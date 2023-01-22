@@ -8,23 +8,27 @@ public class MapModule : IWeighable
     public GameObject gameObj;
     public MapModulePrototype prototype;
 
-    public Connector up;
-    public Connector right;
-    public Connector down;
-    public Connector left;
+    public Connector north;
+    public Connector east;
+    public Connector south;
+    public Connector west;
+    public Connector above;
+    public Connector below;
 
-    public int rotation;
+    public MapModulePrototype.Rotation rotation;
 
     public float weight;
 
-    public MapModule(MapModulePrototype p, GameObject obj, Connector up, Connector right, Connector down, Connector left, int rotation, float weight)
+    public MapModule(MapModulePrototype p, GameObject obj, Connector up, Connector right, Connector down, Connector left, Connector above, Connector below, MapModulePrototype.Rotation rotation, float weight)
     {
         prototype = p;
         gameObj = obj;
-        this.up = up;
-        this.right= right;
-        this.down = down;
-        this.left = left;
+        this.north = up;
+        this.east= right;
+        this.south = down;
+        this.west = left;
+        this.above = above;
+        this.below = below;
         this.rotation = rotation;
         this.weight = weight;
     }
@@ -33,14 +37,18 @@ public class MapModule : IWeighable
     {
         switch (dir)
         {
-            case MapSlot.Direction.Up:
-                return other.down == up; //&& !up.excluded.Contains(other.prototype) && !other.down.excluded.Contains(prototype);
-            case MapSlot.Direction.Right:
-                return other.left == right; //&& !right.excluded.Contains(other.prototype) && !other.left.excluded.Contains(prototype);
-            case MapSlot.Direction.Down:
-                return other.up == down; //&& !down.excluded.Contains(other.prototype) && !other.up.excluded.Contains(prototype);
-            case MapSlot.Direction.Left:
-                return other.right == left; // && !left.excluded.Contains(other.prototype) && !other.right.excluded.Contains(prototype);
+            case MapSlot.Direction.North:
+                return other.south == MapModulePrototype.getConnectable(north); //&& !up.excluded.Contains(other.prototype) && !other.down.excluded.Contains(prototype);
+            case MapSlot.Direction.East:
+                return other.west == MapModulePrototype.getConnectable(east); //&& !right.excluded.Contains(other.prototype) && !other.left.excluded.Contains(prototype);
+            case MapSlot.Direction.South:
+                return other.north == MapModulePrototype.getConnectable(south); //&& !down.excluded.Contains(other.prototype) && !other.up.excluded.Contains(prototype);
+            case MapSlot.Direction.West:
+                return other.east == MapModulePrototype.getConnectable(west); // && !left.excluded.Contains(other.prototype) && !other.right.excluded.Contains(prototype);
+            case MapSlot.Direction.Above:
+                return other.below == MapModulePrototype.getConnectable(above);
+            case MapSlot.Direction.Below:
+                return other.above == MapModulePrototype.getConnectable(below);
         }
 
         return false;

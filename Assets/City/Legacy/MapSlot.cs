@@ -8,37 +8,42 @@ using UnityEngine;
 public class MapSlot
 {
     public List<MapModule> possibleModules;
-    public Vector2Int position;
+    public Vector3Int position;
 
+    public MapSlot neighborNorth;
+    public MapSlot neighborEast;
+    public MapSlot neighborSouth;
+    public MapSlot neighborWest;
     public MapSlot neighborAbove;
-    public MapSlot neighborRight;
     public MapSlot neighborBelow;
-    public MapSlot neighborLeft;
 
     public bool collapsed = false;
 
-    public MapSlot(List<MapModule> possibleModules, int x, int y)
+    public MapSlot(List<MapModule> possibleModules, int x, int y, int z)
     {
-        this.position = new Vector2Int(x, y);
+        this.position = new Vector3Int(x, y, z);
         this.possibleModules = possibleModules;
     }
 
-    public void SetNeighbors((MapSlot, MapSlot, MapSlot, MapSlot) slots)
+    public void SetNeighbors((MapSlot, MapSlot, MapSlot, MapSlot, MapSlot, MapSlot) slots)
     {
-        neighborAbove = slots.Item1;
-        neighborRight = slots.Item2;
-        neighborBelow = slots.Item3;
-        neighborLeft = slots.Item4;
+        neighborNorth = slots.Item1;
+        neighborEast = slots.Item2;
+        neighborSouth = slots.Item3;
+        neighborWest = slots.Item4;
+        neighborAbove = slots.Item5;
+        neighborBelow = slots.Item6;
     }
 
-    public void Collapse()
+    public void Collapse(MapModule forcedModule=null)
     {
-        MapModule selected = WeightedRandomChoice(possibleModules);
+        MapModule selected = forcedModule == null ? WeightedRandomChoice(possibleModules) : forcedModule;
+        Debug.Log("Collapsed " + position.x + "," + position.y + "," + position.z + " to become " + selected.gameObj.name);
         possibleModules = new List<MapModule>() { selected };
-        neighborAbove?.Reevaluate();
-        neighborRight?.Reevaluate();
-        neighborBelow?.Reevaluate();
-        neighborLeft?.Reevaluate();
+        neighborNorth?.Reevaluate();
+        neighborEast?.Reevaluate();
+        neighborSouth?.Reevaluate();
+        neighborWest?.Reevaluate();
         collapsed = true;
     }
 
@@ -47,31 +52,37 @@ public class MapSlot
     {
         if (collapsed) return false;
         // get possible connections
+        List<MapModule> northPossibilities = neighborNorth?.possibleModules.ToList();
+        List<MapModule> eastPossibilities = neighborEast?.possibleModules.ToList();
+        List<MapModule> southPossibilities = neighborSouth?.possibleModules.ToList();
+        List<MapModule> westPossibilities = neighborWest?.possibleModules.ToList();
         List<MapModule> abovePossibilities = neighborAbove?.possibleModules.ToList();
-        List<MapModule> rightPossibilities = neighborRight?.possibleModules.ToList();
         List<MapModule> belowPossibilities = neighborBelow?.possibleModules.ToList();
-        List<MapModule> leftPossibilities = neighborLeft?.possibleModules.ToList();
+
 
         List<MapModule> newlyPossible = possibleModules
-            .Where(m => abovePossibilities == null || abovePossibilities.Where(c => c.CanConnect(m, Direction.Down)).Count() > 0)
-            .Where(m => rightPossibilities == null || rightPossibilities.Where(c => c.CanConnect(m, Direction.Left)).Count() > 0)
-            .Where(m => belowPossibilities == null || belowPossibilities.Where(c => c.CanConnect(m, Direction.Up)).Count() > 0)
-            .Where(m => leftPossibilities == null || leftPossibilities.Where(c => c.CanConnect(m, Direction.Right)).Count() > 0)
+            .Where(m => northPossibilities == null || northPossibilities.Where(c => c.CanConnect(m, Direction.South)).Count() > 0)
+            .Where(m => eastPossibilities == null || eastPossibilities.Where(c => c.CanConnect(m, Direction.West)).Count() > 0)
+            .Where(m => southPossibilities == null || southPossibilities.Where(c => c.CanConnect(m, Direction.North)).Count() > 0)
+            .Where(m => westPossibilities == null || westPossibilities.Where(c => c.CanConnect(m, Direction.East)).Count() > 0)
+            .Where(m => abovePossibilities == null || abovePossibilities.Where(c => c.CanConnect(m, Direction.Below)).Count() > 0)
+            .Where(m => belowPossibilities == null || belowPossibilities.Where(c => c.CanConnect(m, Direction.Above)).Count() > 0)
             .ToList();
 
         bool changed = newlyPossible.Count < possibleModules.Count;
         possibleModules = newlyPossible;
-        if(possibleModules.Count == 1)
-        {
-            collapsed = true;
-        }
+        if (possibleModules.Count == 1) collapsed = true;
+        // no possibilities is okay because it's just air
+        // if(possibleModules.Count == 0) throw new System.Exception("Map slot (" + position.x + "," + position.y + "," + position.z + ") has no possible modules");
 
         if (changed)
         {
+            neighborNorth?.Reevaluate();
+            neighborEast?.Reevaluate();
+            neighborSouth?.Reevaluate();
+            neighborWest?.Reevaluate();
             neighborAbove?.Reevaluate();
-            neighborRight?.Reevaluate();
             neighborBelow?.Reevaluate();
-            neighborLeft?.Reevaluate();
         }
 
         return changed;
@@ -93,7 +104,6 @@ public class MapSlot
             totalWeight += w.GetWeight();
         }
         float chosenWeight = Random.Range(0f, totalWeight);
-        Debug.Log(totalWeight + " " + chosenWeight);
         foreach(T w in list)
         {
             chosenWeight -= w.GetWeight();
@@ -102,5 +112,5 @@ public class MapSlot
         throw new System.Exception("Weighted random choice broke math");
     }
 
-    public enum Direction { Up, Right, Down, Left };
+    public enum Direction { North, East, South, West, Above, Below };
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapModulePrototype : MonoBehaviour, IWeighable
@@ -7,42 +8,59 @@ public class MapModulePrototype : MonoBehaviour, IWeighable
     public Symmetry symmetry;
     public enum Symmetry { X, T, I, L, N }
 
-    public enum Rotation { Degree0, Degree90, Degree180, Degree270 }
+    public enum Rotation { Degree0 = 0, Degree90 = 90, Degree180 = 180, Degree270 = 270 }
 
-    public Connector left;
-    public Connector right;
-    public Connector up;
-    public Connector down;
+    public static Connector getConnectable(Connector source)
+    {
+        switch (source)
+        {
+            case Connector.GrassMidgrassTallgrass:
+                return Connector.TallgrassMidgrassGrass;
+            case Connector.TallgrassMidgrassGrass:
+                return Connector.GrassMidgrassTallgrass;
+            default:
+                return source;
+        }
+    }
+
+    public bool selectable = true;
+
+    public Connector west;
+    public Connector east;
+    public Connector north;
+    public Connector south;
+    public Connector above;
+    public Connector below;
 
     public float weight = 1f;
 
     public List<MapModule> generateAllModules()
     {
         List<MapModule> modules = new List<MapModule>();
-        modules.Add(generateModule(0));
+        modules.Add(generateModule(Rotation.Degree0));
         if (symmetry == Symmetry.X) return modules;
-        modules.Add(generateModule(90));
+        modules.Add(generateModule(Rotation.Degree90));
         if (symmetry == Symmetry.I) return modules;
-        modules.Add(generateModule(270));
-        modules.Add(generateModule(180));
+        modules.Add(generateModule(Rotation.Degree180));
+        modules.Add(generateModule(Rotation.Degree270));
         return modules;
     }
 
-    public MapModule generateModule(int rotation)
+    public MapModule generateModule(Rotation rotation)
     {
         int cycles = 0;
         switch (rotation)
         {
-            case 0:
+            case Rotation.Degree0:
                 cycles = 0;
                 break;
-            case 90:
+            case Rotation.Degree90:
                 cycles = 3;
                 break;
-            case 180:
+            case Rotation.Degree180:
                 cycles = 2;
                 break;
-            case 270:
+            case Rotation.Degree270:
                 cycles = 1;
                 break;
             default:
@@ -52,10 +70,11 @@ public class MapModulePrototype : MonoBehaviour, IWeighable
 
         // rotate connectors
         Queue<Connector> shuffler = new Queue<Connector>();
-        shuffler.Enqueue(up);
-        shuffler.Enqueue(right);
-        shuffler.Enqueue(down);
-        shuffler.Enqueue(left);
+        shuffler.Enqueue(north);
+        shuffler.Enqueue(east);
+        shuffler.Enqueue(south);
+        shuffler.Enqueue(west);
+
         for (int i = 0; i < cycles; i++)
         {
             shuffler.Enqueue(shuffler.Dequeue());
@@ -73,6 +92,8 @@ public class MapModulePrototype : MonoBehaviour, IWeighable
             rights,
             downs,
             lefts,
+            above,
+            below,
             rotation,
             weight);
     }
@@ -81,14 +102,39 @@ public class MapModulePrototype : MonoBehaviour, IWeighable
     {
         return weight;
     }
+
+    public Rotation Rotate90(Rotation rot)
+    {
+        switch (rot)
+        {
+            case Rotation.Degree0:
+                return Rotation.Degree90;
+            case Rotation.Degree90:
+                return Rotation.Degree180;
+            case Rotation.Degree180:
+                return Rotation.Degree270;
+            case Rotation.Degree270:
+                return Rotation.Degree0;
+            default:
+                throw new System.Exception("Rotation laws of physics broken");
+        }
+
+    }
 }
 
 public enum Connector
 {
-    Grass,
-    DirtRoadWithGrass,
-    RoadWithGrass,
-    SmallRoadWithGrass,
-    Water,
-    WaterWithGrass,
+    Any = 0,
+    GrassGrassGrass = 10,
+    GrassDirtGrass = 20,
+    GrassRoadGrass = 30,
+    GrassMiniroadGrass = 40,
+    WaterWaterWater = 50,
+    GrassWaterGrass = 60,
+    GrassMidgrassTallgrass = 70,
+    TallgrassMidgrassGrass = 80,
+    TallgrassTallgrassTallgrass = 90,
+    TallgrassTalldirtTallgrass = 100,
+    Air = 110,
+    SlopeCap = 120,
 }
