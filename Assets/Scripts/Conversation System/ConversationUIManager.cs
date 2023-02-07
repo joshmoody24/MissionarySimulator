@@ -131,7 +131,7 @@ public class ConversationUIManager : MonoBehaviour
         UpdateKnowledgeIndicators();
     }
 
-    public void UpdateKnowledgeIndicators(Person p = null)
+    public void UpdateKnowledgeIndicators(Character p = null)
     {
         float tierSize = 1f / knowledgeTiers.Length;
 
