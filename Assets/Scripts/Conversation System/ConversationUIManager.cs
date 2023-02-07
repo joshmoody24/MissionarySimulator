@@ -131,7 +131,7 @@ public class ConversationUIManager : MonoBehaviour
         UpdateKnowledgeIndicators();
     }
 
-    public void UpdateKnowledgeIndicators(Character p = null)
+    public void UpdateKnowledgeIndicators(Person p = null)
     {
         float tierSize = 1f / knowledgeTiers.Length;
 
@@ -143,14 +143,14 @@ public class ConversationUIManager : MonoBehaviour
         else knowledgeIndicatorTwo.sprite = knowledgeTiers[Mathf.Clamp(Mathf.FloorToInt((float)personTwoKnowledge / tierSize), 0, knowledgeTiers.Length-1)];
     }
 
-    void HidePlayerControls(Character person)
+    void HidePlayerControls(Person person)
     {
         actionTypeButtonParent.gameObject.SetActive(false);
         actionButtonParent.gameObject.SetActive(false);
         topicViewParent.gameObject.SetActive(false);
     }
 
-    void UpdateNarrationText(Choice action, Character actor)
+    void UpdateNarrationText(Choice action, Person actor)
     {
         narrationText.text = actor.name + " used " + action.name + "!";
     }
