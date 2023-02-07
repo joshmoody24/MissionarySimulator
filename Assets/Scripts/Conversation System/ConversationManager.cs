@@ -11,9 +11,9 @@ public class ConversationManager : MonoBehaviour
     public static ConversationManager manager;
     public GameConfig config;
 
-    public Person personOne;
-    public Person personTwo;
-    private Person activePerson;
+    public Character personOne;
+    public Character personTwo;
+    private Character activePerson;
 
     public Topic currentTopic;
 
@@ -21,9 +21,9 @@ public class ConversationManager : MonoBehaviour
     [HideInInspector]
     public UnityEvent<Topic> onTopicChanged;
     [HideInInspector]
-    public UnityEvent<Person> onTurnEnded;
+    public UnityEvent<Character> onTurnEnded;
     [HideInInspector]
-    public UnityEvent<AbstractAction, Person> onActionFinished;
+    public UnityEvent<Choice, Character> onActionFinished;
 
     // Debug
     [Header("Debug")]
@@ -35,8 +35,8 @@ public class ConversationManager : MonoBehaviour
         if (manager == null) manager = this;
         else Destroy(this);
         if (onTopicChanged == null) onTopicChanged = new UnityEvent<Topic>();
-        if (onTurnEnded == null) onTurnEnded = new UnityEvent<Person>();
-        if (onActionFinished == null) onActionFinished = new UnityEvent<AbstractAction, Person>();
+        if (onTurnEnded == null) onTurnEnded = new UnityEvent<Character>();
+        if (onActionFinished == null) onActionFinished = new UnityEvent<Choice, Character>();
     }
 
     void Start()
@@ -67,17 +67,17 @@ public class ConversationManager : MonoBehaviour
         activePerson.driver.PromptCategories(GetAction);
     }
 
-    public void GetAction(ActionCategory selectedCategory)
+    public void GetAction(ChoiceCategory selectedCategory)
     {
         activePerson.driver.PromptActions(selectedCategory, (action) => InitiateAction(action, activePerson));
     }
 
-    public void InitiateAction(AbstractAction action, Person actor)
+    public void InitiateAction(Choice action, Character actor)
     {
         action.Execute(actor, EvaluateAction);
     }
 
-    public void EvaluateAction(AbstractAction action)
+    public void EvaluateAction(Choice action)
     {
         onActionFinished.Invoke(action, activePerson);
         InitializeEndOfTurn();
@@ -109,7 +109,7 @@ public class ConversationManager : MonoBehaviour
         return knowledge;
     }
 
-    public Person GetOtherPerson()
+    public Character GetOtherPerson()
     {
         return personOne == activePerson ? personTwo : personOne;
     }

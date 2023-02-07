@@ -59,14 +59,14 @@ public class ConversationUIManager : MonoBehaviour
         }
     }
 
-    public void DisplayCategoryPrompt(IEnumerable<ActionCategory> categories, Action<ActionCategory> onSelect)
+    public void DisplayCategoryPrompt(IEnumerable<ChoiceCategory> categories, Action<ChoiceCategory> onSelect)
     {
 
         actionTypeButtonParent.gameObject.SetActive(true);
         actionButtonParent.gameObject.SetActive(false);
         topicViewParent.gameObject.SetActive(false);
         ClearAllButtons();
-        foreach (ActionCategory c in categories.OrderBy(c => c.order))
+        foreach (ChoiceCategory c in categories.OrderBy(c => c.order))
         {
             Button b = Instantiate(actionTypeButton, actionTypeButtonParent).GetComponent<Button>();
             b.GetComponentInChildren<TextMeshProUGUI>().text = c.name;
@@ -76,7 +76,7 @@ public class ConversationUIManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(firstBtn);
     }
 
-    public void DisplayActionPrompt(IEnumerable<AbstractAction> actions, Action<AbstractAction> onSelect)
+    public void DisplayActionPrompt(IEnumerable<Choice> actions, Action<Choice> onSelect)
     {
         actionTypeButtonParent.gameObject.SetActive(false);
         actionButtonParent.gameObject.SetActive(true);
@@ -91,7 +91,7 @@ public class ConversationUIManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(backBtn.gameObject);
 
         // add other buttons
-        foreach (AbstractAction a in actions.OrderBy(a => {
+        foreach (Choice a in actions.OrderBy(a => {
             if (a is MissionaryAction) return ((MissionaryAction)a).specialPointsCost;
             else return ((NonmemberAction)a).minAttention;
         }))
@@ -131,7 +131,7 @@ public class ConversationUIManager : MonoBehaviour
         UpdateKnowledgeIndicators();
     }
 
-    public void UpdateKnowledgeIndicators(Person p = null)
+    public void UpdateKnowledgeIndicators(Character p = null)
     {
         float tierSize = 1f / knowledgeTiers.Length;
 
@@ -143,14 +143,14 @@ public class ConversationUIManager : MonoBehaviour
         else knowledgeIndicatorTwo.sprite = knowledgeTiers[Mathf.Clamp(Mathf.FloorToInt((float)personTwoKnowledge / tierSize), 0, knowledgeTiers.Length-1)];
     }
 
-    void HidePlayerControls(Person person)
+    void HidePlayerControls(Character person)
     {
         actionTypeButtonParent.gameObject.SetActive(false);
         actionButtonParent.gameObject.SetActive(false);
         topicViewParent.gameObject.SetActive(false);
     }
 
-    void UpdateNarrationText(AbstractAction action, Person actor)
+    void UpdateNarrationText(Choice action, Character actor)
     {
         narrationText.text = actor.name + " used " + action.name + "!";
     }

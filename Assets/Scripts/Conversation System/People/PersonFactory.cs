@@ -15,7 +15,7 @@ public class PersonFactory : MonoBehaviour
     {
         foreach(PersonSettings settings in peopleToCreate)
         {
-            Person p = settings.targetObject.AddComponent<Person>();
+            Character p = settings.targetObject.AddComponent<Character>();
             p.name = settings.name;
             p.driver = settings.npc ? new NpcDriver(p) : new PlayerDriver(p, ui);
             p.role = settings.missionary ? new Missionary(missionaryActions) : new Nonmember(p, nonmemberActions);
@@ -26,7 +26,7 @@ public class PersonFactory : MonoBehaviour
             p.knowledge.iq = (float)settings.iq / 100f;
             if(p.driver is PlayerDriver)
             {
-                foreach(TopicKnowledge t in p.knowledge.topicKnowledge)
+                foreach(Knol t in p.knowledge.topicKnowledge)
                 {
                     t.revealed = true;
                 }
