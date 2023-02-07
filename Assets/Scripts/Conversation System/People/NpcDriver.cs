@@ -14,18 +14,18 @@ public class NpcDriver : IPersonDriver
     }
 
     // ask the npc to choose an action category from list of possible categories
-    public void PromptCategories(Action<ActionCategory> callback)
+    public void PromptCategories(Action<ChoiceCategory> callback)
     {
-        IEnumerable<ActionCategory> possibleCategories = person.role.GetPossibleCategories();
+        IEnumerable<ChoiceCategory> possibleCategories = person.role.GetPossibleCategories();
         var selected = possibleCategories.ElementAt(UnityEngine.Random.Range(0, possibleCategories.Count()));
         callback(selected);
     }
 
     // ask the npc to choose an action from list of possible actions
-    public void PromptActions(ActionCategory selectedCategory, Action<AbstractAction> callback)
+    public void PromptActions(ChoiceCategory selectedCategory, Action<Choice> callback)
     {
         // algorithmically decide action
-        IEnumerable<AbstractAction> possibleActions = person.role.GetPossibleActions().Where(a => a.category == selectedCategory);
+        IEnumerable<Choice> possibleActions = person.role.GetPossibleActions().Where(a => a.category == selectedCategory);
         var selected = possibleActions.ElementAt(UnityEngine.Random.Range(0, possibleActions.Count()));
         callback(selected);
     }

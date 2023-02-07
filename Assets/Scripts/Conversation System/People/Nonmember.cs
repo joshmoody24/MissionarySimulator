@@ -24,12 +24,12 @@ public class Nonmember : IRole
         return interest * attention;
     }
 
-    public IEnumerable<AbstractAction> GetPossibleActions()
+    public IEnumerable<Choice> GetPossibleActions()
     {
         return actions.Where(a => a.minAttention <= attention && a.maxAttention >= attention);
     }
 
-    public IEnumerable<ActionCategory> GetPossibleCategories()
+    public IEnumerable<ChoiceCategory> GetPossibleCategories()
     {
         return GetPossibleActions().Select(a => a.category).Distinct();
     }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InviteEffect : ActionEffect
+public class InviteEffect : Consequence
 {
     public override void Execute(Person actor, Action onEffectFinish)
     {

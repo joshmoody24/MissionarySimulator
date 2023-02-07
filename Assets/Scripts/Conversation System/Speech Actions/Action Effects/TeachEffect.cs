@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class TeachEffect : ActionEffect
+public class TeachEffect : Consequence
 {
     [Range(0f, 1f)]
     public float power = 1f;

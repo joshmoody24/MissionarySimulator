@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class EndEffect : ActionEffect
+public class EndEffect : Consequence
 {
     public override void Execute(Person actor, Action onEffectFinish)
     {

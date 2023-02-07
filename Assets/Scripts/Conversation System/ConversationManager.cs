@@ -23,7 +23,7 @@ public class ConversationManager : MonoBehaviour
     [HideInInspector]
     public UnityEvent<Person> onTurnEnded;
     [HideInInspector]
-    public UnityEvent<AbstractAction, Person> onActionFinished;
+    public UnityEvent<Choice, Person> onActionFinished;
 
     // Debug
     [Header("Debug")]
@@ -36,7 +36,7 @@ public class ConversationManager : MonoBehaviour
         else Destroy(this);
         if (onTopicChanged == null) onTopicChanged = new UnityEvent<Topic>();
         if (onTurnEnded == null) onTurnEnded = new UnityEvent<Person>();
-        if (onActionFinished == null) onActionFinished = new UnityEvent<AbstractAction, Person>();
+        if (onActionFinished == null) onActionFinished = new UnityEvent<Choice, Person>();
     }
 
     void Start()
@@ -67,17 +67,17 @@ public class ConversationManager : MonoBehaviour
         activePerson.driver.PromptCategories(GetAction);
     }
 
-    public void GetAction(ActionCategory selectedCategory)
+    public void GetAction(ChoiceCategory selectedCategory)
     {
         activePerson.driver.PromptActions(selectedCategory, (action) => InitiateAction(action, activePerson));
     }
 
-    public void InitiateAction(AbstractAction action, Person actor)
+    public void InitiateAction(Choice action, Person actor)
     {
         action.Execute(actor, EvaluateAction);
     }
 
-    public void EvaluateAction(AbstractAction action)
+    public void EvaluateAction(Choice action)
     {
         onActionFinished.Invoke(action, activePerson);
         InitializeEndOfTurn();

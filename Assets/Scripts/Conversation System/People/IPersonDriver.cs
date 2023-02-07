@@ -5,7 +5,7 @@ using System;
 
 public interface IPersonDriver
 {
-    public void PromptCategories(Action<ActionCategory> callback);
-    public void PromptActions(ActionCategory selectedCategory, Action<AbstractAction> callback);
+    public void PromptCategories(Action<ChoiceCategory> callback);
+    public void PromptActions(ChoiceCategory selectedCategory, Action<Choice> callback);
     public void PromptTopics(float requiredKnowledge, Action<Topic> callback);
 }

@@ -29,7 +29,7 @@ public abstract class AbstractActionEditor : Editor
         requiredKnowledge = serializedObject.FindProperty("requiredKnowledge");
         effects = serializedObject.FindProperty("effects");
         action = (AbstractAction)target;
-        effectTypes = GetImplementations<ActionEffect>();
+        effectTypes = GetImplementations<Consequence>();
     }
 
     public override void OnInspectorGUI()
@@ -51,7 +51,7 @@ public abstract class AbstractActionEditor : Editor
         }
         if (GUILayout.Button("Refresh Effects"))
         {
-            effectTypes = GetImplementations<ActionEffect>();
+            effectTypes = GetImplementations<Consequence>();
         }
         EditorGUILayout.EndHorizontal();
     }
@@ -62,7 +62,7 @@ public abstract class AbstractActionEditor : Editor
         effects.InsertArrayElementAtIndex(effects.arraySize);
         serializedObject.ApplyModifiedProperties();
         // explicitly set that new item
-        action.effects[action.effects.Length-1] = (ActionEffect)Activator.CreateInstance(effectTypes[effectIndex]);
+        action.effects[action.effects.Length-1] = (Consequence)Activator.CreateInstance(effectTypes[effectIndex]);
     }
 
     private static Type[] GetImplementations<T>()

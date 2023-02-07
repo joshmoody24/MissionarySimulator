@@ -18,15 +18,15 @@ public class PlayerDriver : IPersonDriver
 
     }
 
-    public void PromptActions(ActionCategory selectedCategory, Action<AbstractAction> callback)
+    public void PromptActions(ChoiceCategory selectedCategory, Action<Choice> callback)
     {
-        IEnumerable<AbstractAction> possibleActions = person.role.GetPossibleActions().Where(a => a.category == selectedCategory);
+        IEnumerable<Choice> possibleActions = person.role.GetPossibleActions().Where(a => a.category == selectedCategory);
         ui.DisplayActionPrompt(possibleActions, callback);
     }
 
-    public void PromptCategories(Action<ActionCategory> callback)
+    public void PromptCategories(Action<ChoiceCategory> callback)
     {
-        IEnumerable<ActionCategory> possibleCategories = person.role.GetPossibleCategories();
+        IEnumerable<ChoiceCategory> possibleCategories = person.role.GetPossibleCategories();
         ui.DisplayCategoryPrompt(possibleCategories, callback);
     }
 

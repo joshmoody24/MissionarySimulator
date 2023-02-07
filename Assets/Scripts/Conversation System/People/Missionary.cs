@@ -19,12 +19,12 @@ public class Missionary : IRole
 
     }
 
-    public IEnumerable<AbstractAction> GetPossibleActions()
+    public IEnumerable<Choice> GetPossibleActions()
     {
         return actions;
     }
 
-    public IEnumerable<ActionCategory> GetPossibleCategories()
+    public IEnumerable<ChoiceCategory> GetPossibleCategories()
     {
         return actions.Select(a => a.category).Distinct();
     }
