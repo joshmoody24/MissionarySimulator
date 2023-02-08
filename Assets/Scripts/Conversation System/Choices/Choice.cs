@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Unity.VisualScripting.Dependencies.NCalc;
 
+[CreateAssetMenu(fileName = "Choice", menuName = "Choice")]
 public class Choice : ScriptableObject
 {
     public new string name;
     [TextArea(3,8)]
     public string description;
-    [TextArea(4, 8)]
+    [TextArea(6, 8)]
     public string resultText;
     [Range(0f, 1f)]
     public float requiredKnol;

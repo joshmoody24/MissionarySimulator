@@ -1,8 +1,10 @@
 ﻿using System;
+using UnityEngine;
+using UnityEditor;
 
 [Serializable]
-public struct StatRange {
+public class StatRange {
     public string statName;
-    public float minValue;
-    public float maxValue;
+
+    public MinMax range;
 }

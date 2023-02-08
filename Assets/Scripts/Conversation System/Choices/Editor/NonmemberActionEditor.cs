@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+/*
 [CustomEditor(typeof(NonmemberAction))]
 public class NonmemberActionEditor : AbstractActionEditor
 {
@@ -32,3 +32,4 @@ public class NonmemberActionEditor : AbstractActionEditor
         serializedObject.ApplyModifiedProperties();
     }
 }
+*/

@@ -53,24 +53,9 @@ public class ConversationManager : MonoBehaviour
     {
         if (activePerson == personOne) activePerson = personTwo;
         else activePerson = personOne;
-        GetCategory();
+        // yield return activePerson.driver.SelectChoice();
     }
 
-    public void RestartTurn()
-    {
-        GetCategory();
-    }
-
-    public void GetCategory()
-    {
-        // generate list of possible speech action categories
-        activePerson.driver.PromptCategories(GetAction);
-    }
-
-    public void GetAction(ChoiceCategory selectedCategory)
-    {
-        activePerson.driver.PromptActions(selectedCategory, (action) => InitiateAction(action, activePerson));
-    }
 
     public void InitiateAction(Choice action, Character actor)
     {
@@ -103,10 +88,7 @@ public class ConversationManager : MonoBehaviour
 
     public float Inquire()
     {
-        float knowledge = GetOtherPerson().knowledge.ToDict()[currentTopic];
-        // reveal
-        GetOtherPerson().knowledge.topicKnowledge.FirstOrDefault(tk => tk.topic == currentTopic).revealed = true;
-        return knowledge;
+        return GetOtherPerson().knowledge.GetKnowledgeOf(currentTopic);
     }
 
     public Character GetOtherPerson()
@@ -117,7 +99,7 @@ public class ConversationManager : MonoBehaviour
     public void Teach(float power)
     {
         // people can't teach other people beyond their own knowledge
-        float limit = activePerson.GetTopicKnowledgeForced(currentTopic);
+        float limit = activePerson.knowledge.GetKnowledgeOf(currentTopic);
         GetOtherPerson().Learn(currentTopic, power, limit);
     }
 

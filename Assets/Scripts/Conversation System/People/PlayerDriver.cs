@@ -6,11 +6,9 @@ using UnityEngine;
 
 public class PlayerDriver : IPersonDriver
 {
-    public ConversationUIManager ui;
     private Character person;
-    public PlayerDriver(Character person, ConversationUIManager ui)
+    public PlayerDriver(Character person)
     {
-        this.ui = ui;
         this.person = person;
     }
     public void InitiateConversation()

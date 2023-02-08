@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/*
+
 [CustomEditor(typeof(MissionaryAction))]
 public class MissionaryActionEditor : AbstractActionEditor
 {
@@ -24,3 +26,4 @@ public class MissionaryActionEditor : AbstractActionEditor
         serializedObject.ApplyModifiedProperties();
     }
 }
+*/

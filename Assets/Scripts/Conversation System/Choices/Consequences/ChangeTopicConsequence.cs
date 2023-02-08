@@ -9,10 +9,8 @@ public class ChangeTopicConsequence : Consequence
     public float requiredKnowledge;
     public override void Execute(Character actor, Action onEffectFinish)
     {
-        actor.driver.PromptTopics(requiredKnowledge, (topic) =>
-        {
-            ConversationManager.manager.ChangeTopic(topic);
-            onEffectFinish();
-        });
+        throw new System.NotImplementedException();
+        ConversationManager.manager.ChangeTopic(null);
+        onEffectFinish();
     }
 }
