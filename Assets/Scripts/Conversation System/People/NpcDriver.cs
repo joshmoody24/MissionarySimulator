@@ -13,8 +13,9 @@ public class NpcDriver : IPersonDriver
         this.person = person;
     }
 
-    public Choice SelectChoice()
+    public void SelectChoice(Character other, Action<Choice> callback)
     {
-        throw new System.NotImplementedException();
+        var choices = person.GetPossibleChoices(other);
+        callback.Invoke(choices.ElementAt(UnityEngine.Random.Range(0, choices.Count)));
     }
 }

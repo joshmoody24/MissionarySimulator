@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
+  m_Name: Bowel-mageddon
+  m_EditorClassIdentifier: 
+  name: Bowel-mageddon
+  description: Uh oh...
+  resultText: '[s.name] suddenly clutched [s.his] stomach, a look of alarm spreading
+    across [s.his] face. [r.name] took a step back, wondering what was wrong. "What''s
+    wrong, [s.name]?" [s.name] groaned, "I think I''ve got the worst case of indigestion
+    ever!" [r.name] chuckled, "Well, that doesn''t sound so bad." [s.name] shook
+    [s.his] head, "No, no, no, you don''t understand. This is Bowel-mageddon, the
+    ultimate case of indigestion! I might never be the same again!" [r.name] couldn''t
+    help but laugh at [s.name]''s silly antics, as [s.he] made a big show of pretending
+    to be in utter agony. In the end, a few antacids and a good laugh were all it
+    took to calm the "explosive" situation and get [s.name] back on track to sharing
+    the gospel.'
+  requiredKnol: 0
+  fromTags: []
+  toTags: []
+  targetTraits: []
+  statRanges: []
+  includedEnvironments: []
+  excludedEnvironments: []
+  consequences: []
+  references:
+    version: 2
+    RefIds: []

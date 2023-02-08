@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
+  m_Name: Ask Weird Question
+  m_EditorClassIdentifier: 
+  name: Ask a Weirdly Personal Question
+  description: Make things awkward
+  resultText: '[s.name] decided to take a risk and ask [r.name] a weirdly personal
+    question. [r.name]''s eyes grew wide with shock as [s.name] blurted out the question.
+
+    
+
+    "[r.name],
+    I''m curious, how do you feel about pickles on pizza?" [r.name] asked, trying
+    to hide [s.his] nervousness. [r.name] stared at [s.name] for a moment before
+    bursting into laughter.
+
+    
+
+    "You''re something else, [s.name]. I''ve
+    never been asked that before!" [r.name] chuckled. [s.name] joined in the laughter,
+    relieved that the question wasn''t too off-putting. They continued their conversation,
+    but [s.name] made a mental note to stick to safer topics in the future.'
+  requiredKnol: 0
+  fromTags: []
+  toTags: []
+  targetTraits: []
+  statRanges: []
+  includedEnvironments: []
+  excludedEnvironments: []
+  consequences: []
+  references:
+    version: 2
+    RefIds: []

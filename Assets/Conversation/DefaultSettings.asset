@@ -10,6 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 180abe0d778bdf04a9e071e4eb347fcd, type: 3}
-  m_Name: Default
+  m_Name: DefaultSettings
   m_EditorClassIdentifier: 
   conversationBurnRate: 0.165
+  conversationDelay: 4
+  choiceLimit: 5

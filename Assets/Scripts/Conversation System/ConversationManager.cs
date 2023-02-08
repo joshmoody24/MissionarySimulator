@@ -23,7 +23,11 @@ public class ConversationManager : MonoBehaviour
     [HideInInspector]
     public UnityEvent<Character> onTurnEnded;
     [HideInInspector]
-    public UnityEvent<Choice, Character> onActionFinished;
+    public UnityEvent<Message> onMessageDelivered;
+    [HideInInspector]
+    public UnityEvent<List<Message>, Action<Choice>> onRequestPlayerAction;
+
+    public List<Message> history;
 
     // Debug
     [Header("Debug")]
@@ -36,15 +40,18 @@ public class ConversationManager : MonoBehaviour
         else Destroy(this);
         if (onTopicChanged == null) onTopicChanged = new UnityEvent<Topic>();
         if (onTurnEnded == null) onTurnEnded = new UnityEvent<Character>();
-        if (onActionFinished == null) onActionFinished = new UnityEvent<Choice, Character>();
+        if (onMessageDelivered == null) onMessageDelivered = new UnityEvent<Message>();
+        if (onRequestPlayerAction == null) onRequestPlayerAction = new UnityEvent<List<Message>, Action<Choice>>();
     }
 
     void Start()
     {
         StartConversation(startingTopic);
     }
+
     public void StartConversation(Topic startingTopic = null)
     {
+        history = new List<Message>();
         ChangeTopic(startingTopic);
         StartNextTurn();
     }
@@ -53,18 +60,20 @@ public class ConversationManager : MonoBehaviour
     {
         if (activePerson == personOne) activePerson = personTwo;
         else activePerson = personOne;
-        // yield return activePerson.driver.SelectChoice();
+        activePerson.driver.SelectChoice(GetOtherPerson(), ExecuteChoice);
     }
 
 
-    public void InitiateAction(Choice action, Character actor)
+    public void ExecuteChoice(Choice choice)
     {
-        action.Execute(actor, EvaluateAction);
+        choice.Execute(activePerson, EvaluateChoice);
     }
 
-    public void EvaluateAction(Choice action)
+    public void EvaluateChoice(Choice choice)
     {
-        onActionFinished.Invoke(action, activePerson);
+        Message newMessage = new Message { choice = choice, receiver = GetOtherPerson(), speaker = activePerson, topic = currentTopic };
+        history.Add(newMessage);
+        onMessageDelivered.Invoke(newMessage);
         InitializeEndOfTurn();
     }
 
@@ -76,7 +85,7 @@ public class ConversationManager : MonoBehaviour
 
     public IEnumerator EndTurn()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(config.conversationDelay);
         StartNextTurn();
     }
 
@@ -96,13 +105,17 @@ public class ConversationManager : MonoBehaviour
         return personOne == activePerson ? personTwo : personOne;
     }
 
+    public void RequestPlayerChoice(List<Choice> possibleChoices, Action<Choice> callback)
+    {
+        // map choices to messages for parsing
+        var possibleMessages = possibleChoices.Select(c => new Message { choice = c, receiver = GetOtherPerson(), speaker = activePerson, topic = currentTopic }).ToList();
+        onRequestPlayerAction.Invoke(possibleMessages, callback);
+    }
+
     public void Teach(float power)
     {
         // people can't teach other people beyond their own knowledge
         float limit = activePerson.knowledge.GetKnowledgeOf(currentTopic);
         GetOtherPerson().Learn(currentTopic, power, limit);
     }
-
-
-
 }

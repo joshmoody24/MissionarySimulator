@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
+  m_Name: BOM Smack
+  m_EditorClassIdentifier: 
+  name: Smack [r.name] with the Book of Mormon
+  description: Not the best way to share the gospel.
+  resultText: '[s.name] considered smacking [r.name] with the Book of Mormon to get
+    [r.his] attention. But [s.he] quickly realized that this was not a loving or
+    effective way to share the gospel. [r.name] would likely feel hurt and defensive,
+    and [s.name] could not risk damaging [r.his] relationship with [r.him]. Instead,
+    [s.name] took a deep breath and calmly approached [r.name], ready to have a respectful
+    conversation about the gospel.'
+  requiredKnol: 0
+  fromTags:
+  - missionary
+  toTags: []
+  targetTraits: []
+  statRanges: []
+  includedEnvironments: []
+  excludedEnvironments: []
+  consequences: []
+  references:
+    version: 2
+    RefIds: []

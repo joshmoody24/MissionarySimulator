@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
+  m_Name: Exodia, Obliterate
+  m_EditorClassIdentifier: 
+  name: Exodia, Obliterate!
+  description: Summon the power of Exodia!
+  resultText: '[s.name] raised [s.his] arms and called out, "Exodia, Obliterate!"
+    [r.name] looked around, unsure of what was happening. Suddenly, a gust of wind
+    swept through the room and [r.name] felt as though the world was being lifted
+    from under [r.him]. [r.name] looked back at [s.name] with wide eyes, "What just
+    happened?" [s.name] simply grinned and replied, "I summoned the power of Exodia!
+    And let''s just say, [r.name], you''re about to be in for a wild ride!" [r.name]
+    gulped and held on tight as [s.name] took [r.him] on a hilarious, whirlwind adventure,
+    all while [s.name] remained in complete control, thanks to the power of Exodia.'
+  requiredKnol: 0
+  fromTags: []
+  toTags: []
+  targetTraits: []
+  statRanges: []
+  includedEnvironments: []
+  excludedEnvironments: []
+  consequences: []
+  references:
+    version: 2
+    RefIds: []

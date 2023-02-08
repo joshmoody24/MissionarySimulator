@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
+  m_Name: Raise Concern
+  m_EditorClassIdentifier: 
+  name: Raise concern about [topic]
+  description: Bring up a sensitive issue
+  resultText: '[s.name] furrowed [s.his] brow, ready to raise [s.his] concern about
+    [topic] with [r.name]. [r.name] looked at [s.him], sensing the change in tone.
+    "What''s on your mind, [s.name]?" [s.name] took a deep breath before speaking.
+
+    
+
+    "I
+    just wanted to talk to you about [topic]. I''ve been hearing a lot about it and
+    I''m not sure I fully understand. Can you help clear things up for me?" [r.name]
+    smiled, [r.his] eyes lighting up at the opportunity to share [r.his] faith.
+
+    
+
+    "Of
+    course, [s.name]. I''d be happy to answer any questions you have about [topic].
+    Let''s sit down and chat about it." [s.name] nodded, grateful for [r.name]''s
+    willingness to talk about [topic] and [s.his] own understanding grew as they
+    continued their conversation.'
+  requiredKnol: 0
+  fromTags:
+  - nonmember
+  toTags: []
+  targetTraits: []
+  statRanges: []
+  includedEnvironments: []
+  excludedEnvironments: []
+  consequences: []
+  references:
+    version: 2
+    RefIds: []

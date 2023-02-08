@@ -9,7 +9,7 @@ public class Choice : ScriptableObject
     public new string name;
     [TextArea(3,8)]
     public string description;
-    [TextArea(6, 8)]
+    [TextArea(15,20)]
     public string resultText;
     [Range(0f, 1f)]
     public float requiredKnol;

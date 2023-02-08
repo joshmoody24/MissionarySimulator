@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
+  m_Name: Bold Testimony
+  m_EditorClassIdentifier: 
+  name: Testify about [topic]
+  description: Time to drop some truth bombs!
+  resultText: '[s.name] stood tall and proud, ready to boldly testify about [topic].
+    [r.name] watched with interest as [s.name] launched into a passionate and enthusiastic
+    speech, describing [s.his] personal experiences and beliefs. [S.Name] spoke with
+    such conviction and energy that [r.name] couldn''t help but be moved by [s.his]
+    words. [r.name] felt a sense of awe and inspiration as [s.name] shared [s.his]
+    testimony with confidence and grace.
+
+    
+
+    When [s.name] finished, [r.name]
+    clapped [r.him]self on the back, "Wow, [s.name], that was truly amazing! You
+    have such a gift for sharing your faith and spreading the gospel." [s.name] smiled,
+    a look of pride and humility on [s.his] face. "Thank you, [r.name]. I just feel
+    so strongly about this, and I want to make a difference in the world. Sharing
+    my testimony and helping others to see the truth is the most important thing
+    I can do." And with that, [s.name] continued on [s.his] mission, boldly testifying
+    about [topic] and inspiring others to do the same.'
+  requiredKnol: 0
+  fromTags:
+  - missionary
+  toTags: []
+  targetTraits: []
+  statRanges: []
+  includedEnvironments: []
+  excludedEnvironments: []
+  consequences: []
+  references:
+    version: 2
+    RefIds: []

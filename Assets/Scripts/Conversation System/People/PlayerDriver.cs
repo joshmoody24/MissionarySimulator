@@ -15,8 +15,15 @@ public class PlayerDriver : IPersonDriver
     {
 
     }
-    public Choice SelectChoice()
+
+    public void SelectChoice(Character other, Action<Choice> callback)
     {
-        throw new System.NotImplementedException();
+        var choices = person.GetPossibleChoices(other);
+        ConversationManager.manager.RequestPlayerChoice(choices, SendChoice);
+    }
+
+    public void SendChoice(Choice choice)
+    {
+        ConversationManager.manager.EvaluateChoice(choice);
     }
 }

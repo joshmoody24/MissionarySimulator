@@ -1,24 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
     public string firstName;
     public string lastName;
+    public Gender gender;
     public IPersonDriver driver;
 
+    public bool playerControlled;
+
     public List<string> tags;
-    public Dictionary<string, float> stats;
-    public Dictionary<string, float> traits;
+
+    public GenericDictionary<string, float> stats;
+    public GenericDictionary<string, float> traits;
 
     [SerializeField]
     public Knowledge startingKnowledge;
     [HideInInspector]
     public Knowledge knowledge;
 
-    void Start()
+    void OnEnable()
     {
+        if (playerControlled)
+        {
+            driver = new PlayerDriver(this);
+        }
+        else driver = new NpcDriver(this);
     }
 
     public void InstantiateKnowledge()
@@ -36,4 +46,24 @@ public class Character : MonoBehaviour
         knowledge.SetKnowledgeOf(topic, newKnowledgeAmount);
         Debug.Log(name + " learned " + amountLearned + " about " + topic.name);
     }
+
+    public List<Choice> GetPossibleChoices(Character receiver)
+    {
+        var allChoices = new List<Choice>();
+        allChoices.AddRange(Resources.LoadAll<Choice>("Choices"));
+        return allChoices
+            .Where(c => c.fromTags.Intersect(tags).Count() == c.fromTags.Count)
+            .Where(c => c.toTags.Intersect(receiver.tags).Count() == c.toTags.Count)
+            .Where(c => c.statRanges.Where(s => 
+                stats.ContainsKey(s.statName) && (stats[s.statName] >= s.range.Min) && (stats[s.statName] <= s.range.Max))
+                .Count() == c.statRanges.Count())
+            // todo: environemnt and topic knowledge
+            // todo: scoring and weighted choices
+            // temp
+            .OrderBy(c => UnityEngine.Random.Range(0f, 1f))
+            .Take(ConversationManager.manager.config.choiceLimit)
+            .ToList();
+    }
 }
+
+public enum Gender { Male, Female, Other }

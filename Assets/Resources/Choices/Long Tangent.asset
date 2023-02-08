@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
+  m_Name: Long Tangent
+  m_EditorClassIdentifier: 
+  name: Go on a long tangent about [topic]
+  description: Get ready to be sidetracked!
+  resultText: '[s.name] couldn''t resist. [s.he] announced to [r.name], "Let me tell
+    you about [topic]. Get ready for a wild ride of tangents and asides." And with
+    that, [s.name] went on a hours-long exposition of all things [topic]. [r.name]
+    was caught in the whirlwind, swept away in a sea of information and entertainment.
+    After, [r.name] rubbed [r.his] temples, "Wow, [s.name], that was a wild tangent."
+    But [s.name] just grinned, "I told you it was going to be a long one. Knowledge
+    is power, right?" And with that, [s.name] was off on another tangent.'
+  requiredKnol: 0
+  fromTags: []
+  toTags: []
+  targetTraits: []
+  statRanges: []
+  includedEnvironments: []
+  excludedEnvironments: []
+  consequences: []
+  references:
+    version: 2
+    RefIds: []

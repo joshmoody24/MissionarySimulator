@@ -5,5 +5,5 @@ using System;
 
 public interface IPersonDriver
 {
-    public Choice SelectChoice();
+    public void SelectChoice(Character other, Action<Choice> callback);
 }

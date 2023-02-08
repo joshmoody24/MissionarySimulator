@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
-  m_Name: Choice
+  m_Name: Change Subject Nonmember
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  resultText: 
+  name: Change subject to [related_topic]
+  description: Steer the convo in a different direction
+  resultText: '[s.name] suddenly started jabbering on about [related_topic]'
   requiredKnol: 0
   fromTags: []
   toTags: []

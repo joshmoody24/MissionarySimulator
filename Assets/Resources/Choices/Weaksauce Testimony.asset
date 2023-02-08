@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
+  m_Name: Weaksauce Testimony
+  m_EditorClassIdentifier: 
+  name: Weaksauce Testimony
+  description: Time to...uh...share something?
+  resultText: '[s.name] tried to stand tall and proud, ready to share [s.his] testimony
+    about [topic]. But as [s.he] began to speak, [s.his] nerves got the better of
+    [s.him]. [r.name] leaned in, trying to listen, but [s.name] was mumbling so quietly
+    that [r.name] could barely make out a word [s.he] was saying.
+
+    
+
+    "I-uh-I
+    guess I just, uh, really believe in this? And, um, I guess it''s just really
+    important to me?" [s.name] stammered, clearly struggling to find the right words.
+    [r.name] tried to look encouraging, but [s.he] couldn''t help but think that
+    this was one of the weakest testimonies [r.he]''d ever heard.'
+  requiredKnol: 0
+  fromTags:
+  - missionary
+  toTags: []
+  targetTraits: []
+  statRanges: []
+  includedEnvironments: []
+  excludedEnvironments: []
+  consequences: []
+  references:
+    version: 2
+    RefIds: []

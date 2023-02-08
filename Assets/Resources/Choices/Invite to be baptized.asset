@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
+  m_Name: Invite to be baptized
+  m_EditorClassIdentifier: 
+  name: Invite [r.name] to be baptized
+  description: Extend an invitation to make a covenant with God
+  resultText: '[s.name] could feel the spirit guiding [s.him] in the conversation
+    with [r.name]. [S.Name] knew it was the right time to extend an invitation for
+    [r.name] to be baptized.
+
+    
+
+    "I hope you don''t mind me asking, [r.name],
+    but have you ever considered being baptized? It''s a beautiful experience and
+    a wonderful way to show your commitment to the gospel." [r.name]''s eyes lit
+    up with curiosity and [s.name] could tell [r.he] was considering the invitation.
+    [s.name] took the opportunity to explain more about the blessings and joy that
+    come from being baptized and [r.name] seemed more interested with each passing
+    moment. [r.name] agreed to think more about it and [s.name] left the conversation
+    feeling grateful and blessed.'
+  requiredKnol: 0
+  fromTags:
+  - missionary
+  toTags:
+  - nonmember
+  targetTraits: []
+  statRanges: []
+  includedEnvironments: []
+  excludedEnvironments: []
+  consequences: []
+  references:
+    version: 2
+    RefIds: []
