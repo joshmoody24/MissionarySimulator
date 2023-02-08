@@ -1,0 +1,35 @@
+:root {
+    -unity-font-definition: resource('Fonts & Materials/PlayFair');
+}
+.panel {
+    flex-grow: 1;
+    background-color: rgba(34, 37, 115, 0.85);
+    flex-direction: column;
+    align-self: auto;
+    -unity-background-image-tint-color: rgb(130, 130, 130);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    flex-wrap: nowrap;
+}
+
+.choice-btn:hover {
+    background-color: rgba(200, 193, 70, 0.87);
+}
+
+.choice-btn {
+    background-color: rgba(200, 193, 70, 0.58);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 100%;
+    width: 100%;
+    transition-duration: 0.3s;
+    transition-delay: 0s;
+}

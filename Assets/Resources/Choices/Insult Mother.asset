@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
+  m_Name: Insult Mother
+  m_EditorClassIdentifier: 
+  name: Insult [r.name]'s mother
+  description: Obliterate them
+  resultText: '[s.name] cleared [s.his] throat and leaned in, a mischievous glint
+    in [s.his] eye. "Hey [r.name]," [s.he] said, "Your mother... she makes the best
+    cookies in the world!" [r.name] blinked in surprise, then burst out laughing.
+    "What? That''s the insult?" [r.he] said, still chuckling. "That''s the best you''ve
+    got?"
+
+    
+
+    [s.name] just shrugged, a big grin on [s.his] face. "Hey,
+    I figured why not spread a little sweetness instead of sourness, you know?" [r.name]
+    nodded in agreement, still chuckling. "Well, I can''t argue with that. Thanks,
+    [s.name]. You made my day." And with that, the two of them went back to spreading
+    the gospel, still smiling from [s.name]''s silly "insult".'
+  requiredKnol: 0
+  fromTags: []
+  toTags: []
+  targetTraits: []
+  statRanges: []
+  includedEnvironments: []
+  excludedEnvironments: []
+  consequences: []
+  references:
+    version: 2
+    RefIds: []

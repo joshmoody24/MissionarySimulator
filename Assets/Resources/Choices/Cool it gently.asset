@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
+  m_Name: Cool it gently
+  m_EditorClassIdentifier: 
+  name: Tell [r.name] to COOL IT (gently)
+  description: What could go wrong?
+  resultText: '[s.name] took a deep breath and approached [r.name]. [r.name] was
+    getting a little too heated, and it was time to bring the temperature down a
+    notch. [s.name] used a calm but firm tone to deliver the message: "Hey there,
+    [r.name]. Let''s take a step back and COOL IT, okay?"
+
+    
+
+    At first,
+    [r.name] seemed taken aback. [r.he] blinked a few times and stared blankly at
+    [s.name]. But then, all of a sudden, [r.name]''s face crumpled and [r.he] burst
+    into tears. "Oh no," [s.name] thought. "What did I do?"
+
+    
+
+    As it turned
+    out, [r.name] was feeling a lot of guilt about a certain situation, and [s.name]''s
+    gentle reminder to COOL IT was just the push [r.he] needed to confront those
+    emotions. [r.Name] sobbed uncontrollably as the crushing weight of [r.his] guilt
+    enveloped [r.him].
+
+    
+
+    But don''t worry, [s.name] was there to comfort
+    [r.name]. [s.he] patted [r.him] on the back and murmured words of encouragement
+    until [r.name] had calmed down. And, in the end, [r.name] was grateful for [s.name]''s
+    intervention. "Thanks, [s.name]," [r.he] said, wiping away [r.his] tears. "I
+    needed that."'
+  requiredKnol: 0
+  fromTags: []
+  toTags: []
+  targetTraits: []
+  statRanges: []
+  includedEnvironments: []
+  excludedEnvironments: []
+  consequences: []
+  references:
+    version: 2
+    RefIds: []

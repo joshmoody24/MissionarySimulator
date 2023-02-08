@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/UIStyles.uss?fileID=7433441132597879392&amp;guid=9a49a40db34bd5040a074efd2dd67555&amp;type=3#UIStyles" />
+    <ui:VisualElement name="choice-btn-container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: 100%; padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px; max-width: 240px;">
+        <ui:Button display-tooltip-when-elided="true" name="choice-btn" usage-hints="DynamicColor" class="choice-btn" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; width: auto; min-width: auto; max-width: none;">
+            <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="choice-title" style="font-size: 14px; -unity-font-style: bold; white-space: normal; margin-top: 2px;" />
+            <ui:Label tabindex="-1" text="This is a surprisingly long description for the testing of the application" display-tooltip-when-elided="true" name="choice-desc" style="flex-grow: 1; white-space: normal; font-size: 13px;" />
+        </ui:Button>
+    </ui:VisualElement>
+</ui:UXML>

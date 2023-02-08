@@ -8,4 +8,8 @@ public class GameConfig : ScriptableObject
     [Range(0f,1f)]
     public float conversationBurnRate;
 
+    public float conversationDelay = 1f;
+
+    public int choiceLimit = 5;
+
 }

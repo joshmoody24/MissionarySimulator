@@ -11,9 +11,9 @@ public class ConversationManager : MonoBehaviour
     public static ConversationManager manager;
     public GameConfig config;
 
-    public Person personOne;
-    public Person personTwo;
-    private Person activePerson;
+    public Character personOne;
+    public Character personTwo;
+    private Character activePerson;
 
     public Topic currentTopic;
 
@@ -21,9 +21,13 @@ public class ConversationManager : MonoBehaviour
     [HideInInspector]
     public UnityEvent<Topic> onTopicChanged;
     [HideInInspector]
-    public UnityEvent<Person> onTurnEnded;
+    public UnityEvent<Character> onTurnEnded;
     [HideInInspector]
-    public UnityEvent<AbstractAction, Person> onActionFinished;
+    public UnityEvent<Message> onMessageDelivered;
+    [HideInInspector]
+    public UnityEvent<List<Message>, Action<Choice>> onRequestPlayerAction;
+
+    public List<Message> history;
 
     // Debug
     [Header("Debug")]
@@ -35,16 +39,19 @@ public class ConversationManager : MonoBehaviour
         if (manager == null) manager = this;
         else Destroy(this);
         if (onTopicChanged == null) onTopicChanged = new UnityEvent<Topic>();
-        if (onTurnEnded == null) onTurnEnded = new UnityEvent<Person>();
-        if (onActionFinished == null) onActionFinished = new UnityEvent<AbstractAction, Person>();
+        if (onTurnEnded == null) onTurnEnded = new UnityEvent<Character>();
+        if (onMessageDelivered == null) onMessageDelivered = new UnityEvent<Message>();
+        if (onRequestPlayerAction == null) onRequestPlayerAction = new UnityEvent<List<Message>, Action<Choice>>();
     }
 
     void Start()
     {
         StartConversation(startingTopic);
     }
+
     public void StartConversation(Topic startingTopic = null)
     {
+        history = new List<Message>();
         ChangeTopic(startingTopic);
         StartNextTurn();
     }
@@ -53,33 +60,20 @@ public class ConversationManager : MonoBehaviour
     {
         if (activePerson == personOne) activePerson = personTwo;
         else activePerson = personOne;
-        GetCategory();
+        activePerson.driver.SelectChoice(GetOtherPerson(), ExecuteChoice);
     }
 
-    public void RestartTurn()
+
+    public void ExecuteChoice(Choice choice)
     {
-        GetCategory();
+        choice.Execute(activePerson, EvaluateChoice);
     }
 
-    public void GetCategory()
+    public void EvaluateChoice(Choice choice)
     {
-        // generate list of possible speech action categories
-        activePerson.driver.PromptCategories(GetAction);
-    }
-
-    public void GetAction(ActionCategory selectedCategory)
-    {
-        activePerson.driver.PromptActions(selectedCategory, (action) => InitiateAction(action, activePerson));
-    }
-
-    public void InitiateAction(AbstractAction action, Person actor)
-    {
-        action.Execute(actor, EvaluateAction);
-    }
-
-    public void EvaluateAction(AbstractAction action)
-    {
-        onActionFinished.Invoke(action, activePerson);
+        Message newMessage = new Message { choice = choice, receiver = GetOtherPerson(), speaker = activePerson, topic = currentTopic };
+        history.Add(newMessage);
+        onMessageDelivered.Invoke(newMessage);
         InitializeEndOfTurn();
     }
 
@@ -91,7 +85,7 @@ public class ConversationManager : MonoBehaviour
 
     public IEnumerator EndTurn()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(config.conversationDelay);
         StartNextTurn();
     }
 
@@ -103,24 +97,25 @@ public class ConversationManager : MonoBehaviour
 
     public float Inquire()
     {
-        float knowledge = GetOtherPerson().knowledge.ToDict()[currentTopic];
-        // reveal
-        GetOtherPerson().knowledge.topicKnowledge.FirstOrDefault(tk => tk.topic == currentTopic).revealed = true;
-        return knowledge;
+        return GetOtherPerson().knowledge.GetKnowledgeOf(currentTopic);
     }
 
-    public Person GetOtherPerson()
+    public Character GetOtherPerson()
     {
         return personOne == activePerson ? personTwo : personOne;
+    }
+
+    public void RequestPlayerChoice(List<Choice> possibleChoices, Action<Choice> callback)
+    {
+        // map choices to messages for parsing
+        var possibleMessages = possibleChoices.Select(c => new Message { choice = c, receiver = GetOtherPerson(), speaker = activePerson, topic = currentTopic }).ToList();
+        onRequestPlayerAction.Invoke(possibleMessages, callback);
     }
 
     public void Teach(float power)
     {
         // people can't teach other people beyond their own knowledge
-        float limit = activePerson.GetTopicKnowledgeForced(currentTopic);
+        float limit = activePerson.knowledge.GetKnowledgeOf(currentTopic);
         GetOtherPerson().Learn(currentTopic, power, limit);
     }
-
-
-
 }
