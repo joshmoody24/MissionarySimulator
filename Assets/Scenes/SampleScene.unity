@@ -343,8 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a180c3888298814f8efc32554b8058b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstName: Boe
-  lastName: Jiden
+  firstName: Beet
+  lastName: Skins
   gender: 0
   playerControlled: 0
   tags:

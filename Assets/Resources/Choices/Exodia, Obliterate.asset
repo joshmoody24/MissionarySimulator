@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789da7d5f8d7de44085ba34ed6a18e16, type: 3}
   m_Name: Exodia, Obliterate
   m_EditorClassIdentifier: 
-  name: Exodia, Obliterate!
+  name: Exodia, Obliterate!<sprite=4>
   description: Summon the power of Exodia!
   resultText: '[s.name] raised [s.his] arms and called out, "Exodia, Obliterate!"
     [r.name] looked around, unsure of what was happening. Suddenly, a gust of wind

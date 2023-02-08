@@ -1,4 +1,6 @@
-
+:root {
+    -unity-font-definition: resource('Fonts & Materials/PlayFair');
+}
 .panel {
     flex-grow: 1;
     background-color: rgba(34, 37, 115, 0.85);
